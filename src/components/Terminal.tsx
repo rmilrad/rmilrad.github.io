@@ -101,7 +101,7 @@ export default function Terminal() {
         <span className="dot dot-r" />
         <span className="dot dot-y" />
         <span className="dot dot-g" />
-        <span className="terminal-title">ryan@portfolio — agent</span>
+        <span className="terminal-title">ryan@portfolio · agent</span>
         <span className="terminal-live">
           <span className="live-dot" /> interactive
         </span>
@@ -148,7 +148,7 @@ export default function Terminal() {
 
       <div className="terminal-ask">
         <div className="ask-hint">
-          <span className="blink-square" /> ask my agent anything — type below or tap a prompt
+          <span className="blink-square" /> ask my agent anything · type below or tap a prompt
         </div>
 
         <div className={`ask-bar ${focused ? "ask-bar-focused" : ""}`}>

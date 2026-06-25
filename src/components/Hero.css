@@ -43,19 +43,22 @@
   font-size: clamp(48px, 9vw, 104px);
   font-weight: 700;
   letter-spacing: -0.045em;
-  line-height: 0.98;
-  margin-bottom: 26px;
+  line-height: 1.06;
+  /* room so gradient-clipped descenders (y, g) aren't cut off */
+  padding-bottom: 0.1em;
+  margin-bottom: 16px;
   background: linear-gradient(180deg, #ffffff 30%, #b9b9c4 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .hero-lead {
-  max-width: 60ch;
-  font-size: clamp(17px, 2.2vw, 21px);
+  max-width: 880px;
+  font-size: clamp(16px, 2.1vw, 20px);
   line-height: 1.5;
   color: var(--text-dim);
   margin-bottom: 52px;
+  text-wrap: balance;
 }
 .hero-lead em {
   font-style: normal;

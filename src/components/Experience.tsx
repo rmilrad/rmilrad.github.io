@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { experience, type JobImage } from "../data/profile";
 import { renderInline } from "../lib/rich";
 import Reveal from "./Reveal";
@@ -35,6 +35,7 @@ function BannerSlideshow({ images, company }: { images?: JobImage[]; company: st
   const ratio = Math.min(...list.map((im) => (im.w && im.h ? im.w / im.h : 21 / 9)));
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
+  const touchX = useRef<number | null>(null);
 
   useEffect(() => {
     if (count <= 1 || paused) return;
@@ -42,13 +43,30 @@ function BannerSlideshow({ images, company }: { images?: JobImage[]; company: st
     return () => clearInterval(t);
   }, [count, paused]);
 
+  function onTouchStart(e: React.TouchEvent) {
+    touchX.current = e.touches[0].clientX;
+  }
+  function onTouchEnd(e: React.TouchEvent) {
+    if (touchX.current === null || count <= 1) return;
+    const delta = e.changedTouches[0].clientX - touchX.current;
+    touchX.current = null;
+    if (Math.abs(delta) < 40) return; // ignore taps and vertical scrolls
+    // swipe left → next, swipe right → previous (both wrap)
+    setIdx((i) => (delta < 0 ? (i + 1) % count : (i - 1 + count) % count));
+  }
+
   return (
     <div
       className="banner-wrap"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="banner" style={{ aspectRatio: String(ratio) }}>
+      <div
+        className="banner"
+        style={{ aspectRatio: String(ratio) }}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
         <div className="banner-track" style={{ transform: `translateX(-${idx * 100}%)` }}>
           {list.map((img, i) => (
             <Slide key={img.src || i} img={img} />

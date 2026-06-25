@@ -1,5 +1,5 @@
 /* =================================================================
-   Ryan Milrad — Portfolio
+   Ryan Milrad · Portfolio
    Design system: dark, restrained, infrastructure-grade.
    ================================================================= */
 
@@ -79,7 +79,7 @@ body::before {
   z-index: 0;
 }
 
-/* Faint blueprint grid — infrastructure texture, fades down the page */
+/* Faint blueprint grid · infrastructure texture, fades down the page */
 body::after {
   content: "";
   position: fixed;

@@ -12,7 +12,9 @@
   font-size: clamp(34px, 6vw, 60px);
   font-weight: 700;
   letter-spacing: -0.035em;
-  line-height: 1.02;
+  line-height: 1.1;
+  /* room so gradient-clipped descenders (g) aren't cut off */
+  padding-bottom: 0.08em;
   margin: 16px 0 20px;
   background: linear-gradient(180deg, #fff 40%, #b9b9c4 100%);
   -webkit-background-clip: text;
@@ -33,31 +35,35 @@
   gap: 12px;
   justify-content: center;
 }
-.btn {
-  font-size: 15px;
-  font-weight: 500;
-  padding: 14px 26px;
-  border-radius: 100px;
-  transition: all 0.22s var(--ease);
-  border: 1px solid transparent;
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-elevated);
+  color: var(--text-dim);
+  transition: color 0.22s var(--ease), border-color 0.22s var(--ease),
+    transform 0.22s var(--ease), background 0.22s var(--ease), box-shadow 0.22s var(--ease);
 }
-.btn-primary {
+.icon-btn:hover {
+  color: var(--text);
+  border-color: var(--text-dim);
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.04);
+}
+.icon-btn-primary {
   background: var(--accent);
+  border-color: var(--accent);
   color: #fff;
-  font-family: var(--font-mono);
-  font-size: 14px;
 }
-.btn-primary:hover {
+.icon-btn-primary:hover {
+  color: #fff;
+  border-color: var(--accent);
   filter: brightness(1.1);
-  transform: translateY(-2px);
   box-shadow: 0 12px 30px -10px var(--accent);
 }
-.btn-ghost {
-  background: transparent;
-  border-color: var(--line-strong);
-  color: var(--text);
-}
-.btn-ghost:hover { border-color: var(--text-dim); background: rgba(255, 255, 255, 0.03); }
 
 .footer {
   margin-top: clamp(60px, 10vw, 110px);

@@ -22,6 +22,8 @@
   border-radius: var(--radius);
   overflow: hidden;
   background: transparent;
+  /* let the browser keep vertical scrolling while we handle horizontal swipes */
+  touch-action: pan-y;
 }
 .banner-track {
   display: flex;
@@ -81,7 +83,7 @@
   z-index: 1;
 }
 
-/* slideshow position dots — sit on the page, centered below the image */
+/* slideshow position dots · sit on the page, centered below the image */
 .banner-dots {
   display: flex;
   justify-content: center;

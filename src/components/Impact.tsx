@@ -10,7 +10,7 @@ export default function Impact() {
           <div className="section-label">~/impact</div>
           <h2 className="section-title">Outcomes, in numbers.</h2>
           <p className="section-intro">
-            Six years of platform work, measured the way infrastructure should be — by what it moved,
+            Six years of platform work, measured the way infrastructure should be: by what it moved,
             secured, and unlocked.
           </p>
         </Reveal>

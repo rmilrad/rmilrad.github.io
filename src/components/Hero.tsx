@@ -24,8 +24,7 @@ export default function Hero() {
 
         <motion.p className="hero-lead" {...fade(0.2)}>
           I build at the intersection of <em>data infrastructure</em>, <em>AI tooling</em>, and{" "}
-          <em>platform engineering</em> — systems that don't just ship products, but make the teams
-          around them faster.
+          <em>platform engineering</em>.
         </motion.p>
 
         <motion.div className="hero-terminal-wrap" {...fade(0.3)}>
