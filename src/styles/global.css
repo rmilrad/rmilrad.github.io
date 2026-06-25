@@ -1,0 +1,182 @@
+/* =================================================================
+   Ryan Milrad — Portfolio
+   Design system: dark, restrained, infrastructure-grade.
+   ================================================================= */
+
+:root {
+  /* --- Surfaces --- */
+  --bg: #0a0a0c;
+  --bg-elevated: #111114;
+  --bg-raised: #16161a;
+  --surface-terminal: #0d0d10;
+
+  /* --- Lines --- */
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
+
+  /* --- Text --- */
+  --text: #f4f4f6;
+  --text-dim: #a1a1aa;
+  --text-muted: #6b6b74;
+
+  /* --- Accent --- */
+  --accent: #4d7cfe;
+  --accent-soft: rgba(77, 124, 254, 0.14);
+  --accent-line: rgba(77, 124, 254, 0.35);
+  --success: #4ade80;
+
+  /* --- Type --- */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* --- Layout --- */
+  --maxw: 1120px;
+  --gutter: clamp(20px, 5vw, 48px);
+  --radius: 14px;
+  --radius-sm: 10px;
+
+  /* --- Motion --- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+}
+
+/* Ambient glow at top of page */
+body::before {
+  content: "";
+  position: fixed;
+  top: -30vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120vw;
+  height: 70vh;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(77, 124, 254, 0.1) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Faint blueprint grid — infrastructure texture, fades down the page */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 65%);
+  mask-image: linear-gradient(180deg, #000 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: #fff;
+}
+
+/* --- Layout helpers --- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(72px, 12vh, 140px);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0;
+  color: var(--accent);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-label::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.section-intro {
+  color: var(--text-dim);
+  max-width: 56ch;
+  font-size: 17px;
+}
+
+/* --- Reusable bits --- */
+.mono {
+  font-family: var(--font-mono);
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-dim);
+  border: 1px solid var(--line);
+  background: var(--bg-elevated);
+  padding: 7px 13px;
+  border-radius: 100px;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.tag:hover {
+  border-color: var(--accent-line);
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

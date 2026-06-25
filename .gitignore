@@ -1,0 +1,16 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+
+# TypeScript incremental build cache
+*.tsbuildinfo
+
+# Local tooling / editor
+.claude/
+.env
+.env.*
+!.env.example
+.vscode/*
+!.vscode/extensions.json
