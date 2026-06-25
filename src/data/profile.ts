@@ -62,7 +62,7 @@ export const experience: Experience[] = [
     summary:
       "Expanded, secured, and accelerated the Staking Platform — and helped stand up Coinbase's PM AI practice org-wide.",
     highlights: [
-      "Led the migration of **$15B** across eight staked assets onto new cold key-management infrastructure, eliminating critical security vulnerabilities and unlocking platform scalability.",
+      "Led the migration of **$15B** across eight staked assets onto new cold key-management infrastructure, hardening platform security and unlocking scalability.",
       "Built an **LLM-powered developer MCP** that cut integration timelines **62% (40→15 weeks)**, accelerating **$2M** in net-new ARR opportunities.",
       "Facilitated **$4.5B** in institutional ETF funds flow as DRI for vendor integrations (Galaxy, Bitmine), owning API requirements from contract to launch.",
       "Preserved **$120M ARR** by leading MiCA and Canadian compliance, keeping ~$1B in staked assets live for 1.3M customers.",
