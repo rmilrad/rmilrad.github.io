@@ -12,6 +12,9 @@
   background: var(--bg);
   padding: 34px 30px;
   min-height: 200px;
+  /* fill the stretched grid cell so the divider background never shows
+     through as a gray gap under shorter cards */
+  height: 100%;
   display: flex;
   flex-direction: column;
   transition: background 0.3s var(--ease);
