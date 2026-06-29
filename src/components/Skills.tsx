@@ -3,9 +3,9 @@ import Reveal from "./Reveal";
 import "./Skills.css";
 
 const groups = [
-  { title: "Technical", items: skills.technical },
   { title: "Product", items: skills.product },
-  { title: "Tools", items: skills.tools },
+  { title: "Technical & AI", items: skills.technical },
+  { title: "Languages", items: skills.languages },
 ];
 
 export default function Skills() {

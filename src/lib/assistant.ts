@@ -11,7 +11,7 @@ export type Suggestion = { label: string; query: string };
 
 export const bootLines = [
   "ryan agent v1.0 · portfolio assistant",
-  "context loaded: 6+ yrs · 4 companies · platform + AI",
+  "context loaded: 6+ yrs · 4 companies · money movement + AI",
   "Ask me anything, or run a suggested command below.",
 ];
 
@@ -36,91 +36,91 @@ const KB: Entry[] = [
     keywords: ["about", "who", "yourself", "summary", "bio", "tell me about", "background", "you"],
     tool: "reading profile.summary",
     answer:
-      "I'm Ryan, a product manager with **6+ years** at the intersection of data infrastructure, AI tooling, and platform engineering.\n\nMost recently at Coinbase I expanded, secured, and accelerated the Staking Platform: migrating billions onto new key management infrastructure, shipping LLM powered developer tooling, and building real time API dashboards.\n\nI think like an engineer and operate like a product leader.",
+      "I'm Ryan, a product manager with **6+ years** owning money movement and financial infrastructure across institutional and consumer platforms.\n\nMost recently at Coinbase I owned funds flow, key management, and compliance for the institutional product group, while shipping AI powered tooling adopted across product and engineering.\n\nI think like an engineer and operate like a product leader.",
   },
   {
     id: "last-role",
     keywords: ["last role", "current", "recent", "now", "latest", "present", "coinbase", "doing now", "most recent"],
     tool: "querying experience where current = true",
     answer:
-      "My most recent role is **Product Manager at Coinbase** (May 2025 to May 2026), on the Staking Platform.\n\nHighlights:\n- Migrated **$15B** across 8 staked assets to new cold key management infrastructure\n- Built an LLM powered developer **MCP** that cut integration time **62%** and unlocked **$2M** in ARR\n- Facilitated **$4.5B** in institutional ETF funds flow as DRI for vendor integrations\n- Preserved **$120M ARR** leading MiCA + Canadian compliance",
+      "My most recent role is **Product Manager at Coinbase** (May 2025 to May 2026), in the institutional product group.\n\nHighlights:\n- Facilitated **$4.5B** in funds flow through third party provider API integrations, launching the first ETH ETF\n- Managed the migration of **$15B** in assets to new key management infrastructure, saving **$2M/yr**\n- Led compliance strategy for **1.3M** global users, preserving **$120M** in annual revenue\n- Shipped an agentic **MCP** that cut engineering integration time **62% (40 to 15 weeks)**",
   },
   {
     id: "metrics",
     keywords: ["metric", "impact", "number", "result", "achievement", "impactful", "kpi", "outcome", "biggest", "proud"],
     tool: "aggregating metrics across roles",
     answer:
-      "The numbers I'm proudest of:\n- **$15B** migrated to new key management infrastructure\n- **$4.5B** in institutional ETF funds flow facilitated\n- **$1B** in liquidity attracted within 4 weeks of the Hemi launch\n- **$2M** in net new ARR from an LLM powered developer MCP\n- **0→400K** accounts driven through onboarding UX\n- **139 PMs** enabled with custom AI tooling",
+      "The numbers I'm proudest of:\n- **$15B** in assets migrated to new key management infrastructure\n- **$4.5B** in funds flow facilitated, including the first ETH ETF\n- **$1B** in liquidity attracted to Hemi across 60+ partner integrations\n- **$180M** in at risk funds surfaced and recovered to full resolution\n- **62%** faster engineering integrations with an agentic MCP\n- **0 → 100K** users driven in six months through UI/UX",
   },
   {
     id: "companies",
     keywords: ["compan", "where", "worked", "history", "experience", "timeline", "career", "jobs", "employ"],
     tool: "listing experience[] ordered by date desc",
     answer:
-      "Where I've worked:\n- **Coinbase** · Product Manager · 2025 to 2026 · Staking Platform + PM AI\n- **Hemi** (built by Bloq) · Sr. PM / PM · 2023 to 2025 · L2 launch, bridge, DEX\n- **Bloq** · Product Manager · 2021 to 2023 · institutional staking infra\n- **Weight Watchers** · Data Scientist Intern · 2017 · NLP + data pipelines\n\nScroll down for the full breakdown of each.",
+      "Where I've worked:\n- **Coinbase** · Product Manager · 2025 to 2026 · institutional funds flow + AI tooling\n- **Hemi** (built by Bloq) · Senior PM · 2023 to 2025 · L2 launch, bridge, wallets\n- **Bloq** · Product Manager · 2021 to 2023 · onchain financial infrastructure\n- **Weight Watchers** · Software Engineering Intern · 2019 · NLP + data systems\n\nScroll down for the full breakdown of each.",
   },
   {
     id: "ai",
     keywords: ["ai", "llm", "mcp", "claude", "tooling", "automation", "agent", "model", "gen ai", "machine learning"],
     tool: "grep 'AI' experience/",
     answer:
-      "AI is central to how I work. At Coinbase I was a core member of the PM AI working group and:\n- Built an **LLM powered developer MCP**: protocol analysis + codebase referencing that cut integration time **62% (40→15 weeks)**\n- Established the **PM AI foundation**: custom skills and automated tooling that compressed PRD → prototype → production code across **139 PMs**\n- Automated **SLA reporting dashboards** ingesting live API data, removing manual engineer dependencies\n\nI build daily with Claude Code, Codex, and Opencode.",
+      "AI is central to how I work. At Coinbase I:\n- Shipped an **agentic MCP** for engineering workflows that cut integration time **62% (40 to 15 weeks)**\n- Built an **LLM powered runbook** that cut partner integration time for ten engineers **75% (16 to 4 weeks)**\n- Standardized north star metrics and dashboards to align **100+** cross functional stakeholders\n\nI build daily with Claude Code and Codex.",
   },
   {
     id: "migration",
     keywords: ["15b", "$15b", "migration", "migrate", "key management", "key-management", "cold", "security", "vulnerab", "infrastructure"],
     tool: "reading case study: key management migration",
     answer:
-      "I led the migration of **$15B across eight staked assets** onto new cold key management infrastructure.\n\nWhy it mattered: it hardened platform security, unlocked downstream platform scalability, and reduced operating costs, all without customer facing disruption.\n\nIt's the kind of deep infra work that doesn't make headlines but is existential for an institutional staking platform.",
+      "I managed the migration of **$15B** in assets onto new key management infrastructure, saving **$2M per year** in legacy costs.\n\nWhy it mattered: it hardened platform security, unlocked downstream scalability, and cut operating costs, all without customer facing disruption.\n\nIt's the kind of deep infra work that doesn't make headlines but is existential for an institutional platform.",
   },
   {
     id: "hemi",
     keywords: ["hemi", "bridge", "l2", "launch", "liquidity", "cross-chain", "cross chain", "dex", "150k", "transactions"],
     tool: "reading case study: hemi launch",
     answer:
-      "At **Hemi** (built by Bloq) I took a modular L2 from zero to launch:\n- **$1B** in liquidity within 4 weeks; **$15M** seed secured\n- Shipped the first **cross chain bridge**, **$500M** transferred in 2 weeks\n- Grew to **150K daily transactions** and **0→400K accounts**\n- Restored incentive participation **73%→95%** after diagnosing an integrity issue\n\nI owned the full user facing surface: staking, bridging, native DEX, onboarding, DevX.",
+      "At **Hemi** (built by Bloq) I owned end to end product strategy for a modular L2:\n- Drove user acquisition **0 → 100K** in six months through UI/UX\n- Attracted **$1B** in liquidity across **60+** partner integrations\n- Led the cross chain **bridge** and **wallet integrations**, facilitating **$500M** in liquidity\n- Grew DAU **70%** over three months through funnel analysis",
   },
   {
     id: "bloq",
     keywords: ["bloq", "visa", "institutional", "custody", "bitgo", "discover", "aum", "api", "0 to 1", "0->1"],
     tool: "reading case study: bloq infrastructure",
     answer:
-      "At **Bloq** I shipped institutional staking infrastructure:\n- Led **0→1** on Visa's first Ethereum staking proof of concept, integrating BitGo for custody\n- Scaled to **$25M AuM** across 12 networks\n- Advised Discover Bank's Innovation Team on blockchain strategy\n- Owned three API services: BloqStake, BloqNodes, BloqConnect",
+      "At **Bloq** I shipped onchain financial infrastructure:\n- Owned end to end development of Visa's first **crypto yield product**, full stack from API to UI\n- Led **0 → 1** adoption of core platform services, scaling onchain infra to support **$25M** in user funds\n- Advised **Discover Bank** on emerging trends and technologies",
   },
   {
     id: "compliance",
     keywords: ["compliance", "mica", "governance", "regulat", "legal", "canada", "canadian", "europe", "european", "120m"],
     tool: "reading case study: compliance and governance",
     answer:
-      "I preserved **$120M ARR** by leading compliance and data governance across European (**MiCA**) and Canadian markets.\n\nI authored the product specs that kept ~**$1B** in staked assets accessible and uninterrupted for **1.3M** global customers through regulatory change.",
+      "I led compliance strategy, architecting regionally compliant platform services for **1.3M** global users.\n\nThat work protected a **$1B** international market and preserved **$120M** in annual revenue through regulatory change.",
   },
   {
     id: "etf",
     keywords: ["etf", "institutional flow", "galaxy", "bitmine", "vendor", "4.5b", "$4.5b", "funds flow"],
     tool: "reading case study: institutional etf",
     answer:
-      "I was DRI for institutional vendor integrations (Galaxy, Bitmine), facilitating **$4.5B** in ETF funds flow.\n\nI owned the technical API requirements and stakeholder alignment end to end, from contract through launch.",
+      "I facilitated **$4.5B** in funds flow through third party provider **API integrations**, including launching the first **ETH ETF** product offering.\n\nI owned the technical API requirements and stakeholder alignment end to end, from contract through launch.",
   },
   {
     id: "experimentation",
     keywords: ["experiment", "a/b", "ab test", "payout", "180m", "$180m", "at-risk", "at risk", "data analysis", "$900k", "900k"],
     tool: "reading case study: data driven wins",
     answer:
-      "A couple of data driven wins I like:\n- Surfaced **$180M** in at risk funds through data analysis and led cross functional recovery to full resolution, **zero customer impact**\n- Captured **$900K ARR** via structured experimentation: spotted a payout flow inefficiency, validated a config change on a partial fleet, then scaled it",
+      "A couple of data driven wins I like:\n- Surfaced **$180M** in at risk funds through data analysis and led the financial team recovery to full resolution\n- Captured **$900K** in revenue by optimizing retail payout flows with **SQL** and experimentation",
   },
   {
     id: "skills",
     keywords: ["skill", "stack", "tech", "tools", "language", "code", "python", "sql", "solidity", "strong", "good at"],
     tool: "cat skills.json",
     answer:
-      "**Technical:** Claude Code, Codex, Opencode, Python, SQL, JavaScript, Solidity, REST, Postman, GitHub, Snowflake, Datadog, Looker, Figma.\n\n**Product:** Cross functional leadership, data analytics, developer experience, funnel optimization, roadmapping, stakeholder management, user research, A/B testing, data governance.\n\n**Languages:** English, Spanish.",
+      "**Product:** Metrics ownership, north star definition, funnel optimization, testing & experimentation, roadmapping, stakeholder management, cross functional leadership, user research, developer experience, Agile.\n\n**Technical & AI:** LLM powered tooling, workflow automation, Python, SQL, JavaScript, Solidity, REST, Postman, Snowflake, Datadog, Looker, Claude Code, Codex, GitHub, Linear, Jira, Figma.\n\n**Languages:** English, Spanish.",
   },
   {
     id: "education",
     keywords: ["education", "school", "degree", "study", "college", "university", "fau", "computer science"],
     tool: "reading education + certifications",
     answer:
-      "**B.S. in Computer Science**, Florida Atlantic University (2018).\n\nCertifications: **PMP** (2024), Product Management Certificate from eCornell (2023), and a Data Science Certificate (2018).",
+      "**B.S. in Computer Science**, Florida Atlantic University (2020).\n\nCertifications: **PMP** (2024), Product Management Certificate from eCornell (2023), and a Data Science Certificate (2020).",
   },
   {
     id: "contact",

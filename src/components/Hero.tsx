@@ -23,8 +23,8 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p className="hero-lead" {...fade(0.2)}>
-          I build at the intersection of <em>data infrastructure</em>, <em>AI tooling</em>, and{" "}
-          <em>platform engineering</em>.
+          I build at the intersection of <em>money movement</em>, <em>financial infrastructure</em>, and{" "}
+          <em>AI tooling</em>.
         </motion.p>
 
         <motion.div className="hero-terminal-wrap" {...fade(0.3)}>
