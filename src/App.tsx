@@ -16,7 +16,8 @@ function usePageMotion() {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const items = Array.from(document.querySelectorAll(".reveal"));
+    // .bx cards manage their own reveal state in React (dynamic className)
+    const items = Array.from(document.querySelectorAll(".reveal:not(.bx)"));
     let io: IntersectionObserver | undefined;
     if (reduce || !("IntersectionObserver" in window)) {
       items.forEach((el) => el.classList.add("in"));

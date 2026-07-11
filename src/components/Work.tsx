@@ -53,18 +53,33 @@ function Lockup({ id }: { id: string }) {
 
 function JobCard({ job }: { job: Job }) {
   const [open, setOpen] = useState(false);
+  const [seen, setSeen] = useState(false); // reveal in
+  const [lit, setLit] = useState(false); // grayscale to color focus
   const ref = useRef<HTMLElement | null>(null);
 
-  // colorize when the box enters the middle band of the viewport
+  /* The card's className is dynamic, so React re renders would wipe
+     classes added from outside via classList. All three states live
+     in React instead; the global reveal observer skips .bx. */
   useEffect(() => {
     const el = ref.current;
-    if (!el || !("IntersectionObserver" in window)) return;
-    const io = new IntersectionObserver(
-      (es) => es.forEach((e) => e.target.classList.toggle("lit", e.isIntersecting)),
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || !("IntersectionObserver" in window)) {
+      setSeen(true);
+      setLit(true);
+      return;
+    }
+    const ioIn = new IntersectionObserver(
+      (es) => es.forEach((e) => { if (e.isIntersecting) { setSeen(true); ioIn.disconnect(); } }),
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+    );
+    const ioLit = new IntersectionObserver(
+      (es) => es.forEach((e) => setLit(e.isIntersecting)),
       { rootMargin: "-22% 0px -22% 0px" },
     );
-    io.observe(el);
-    return () => io.disconnect();
+    ioIn.observe(el);
+    ioLit.observe(el);
+    return () => { ioIn.disconnect(); ioLit.disconnect(); };
   }, []);
 
   const vars = {
@@ -117,7 +132,12 @@ function JobCard({ job }: { job: Job }) {
   );
 
   return (
-    <article className={`bx reveal${open ? " open" : ""}`} style={vars} ref={ref} id={`bx-${job.id}`}>
+    <article
+      className={`bx reveal${seen ? " in" : ""}${lit ? " lit" : ""}${open ? " open" : ""}`}
+      style={vars}
+      ref={ref}
+      id={`bx-${job.id}`}
+    >
       {job.compact ? (
         text
       ) : (
