@@ -1,159 +1,123 @@
 /* =================================================================
-   THE TERMINAL BRAIN
-   Local, curated, zero-cost. Speaks in first person as Ryan.
+   THE ASK BOX BRAIN
+   Local, curated, zero cost. Speaks in first person as Ryan.
+   Sourced from the vetted work history and story bank; anything
+   company sensitive or private stays out by design.
 
-   To upgrade to a live LLM later: keep `suggestions` + `bootLines`,
-   and replace `getResponse()` with a streaming API call. Nothing
-   else in the app needs to change.
+   To upgrade to a live LLM later: keep `suggestions`, replace
+   `getAnswer()` with a streaming API call. Nothing else changes.
    ================================================================= */
 
 export type Suggestion = { label: string; query: string };
 
-export const bootLines = [
-  "ryan agent v1.0 · portfolio assistant",
-  "context loaded: 6+ yrs · 4 companies · money movement + AI",
-  "Ask me anything, or run a suggested command below.",
-];
-
 export const suggestions: Suggestion[] = [
-  { label: "My last role", query: "What was your last role?" },
-  { label: "Most impactful metrics", query: "What are your most impactful metrics?" },
-  { label: "Where I've worked", query: "Which companies have you worked at?" },
-  { label: "What I've built with AI", query: "What have you built with AI?" },
-  { label: "The $15B migration", query: "Tell me about the $15B migration." },
+  { label: "Last role", query: "What was your last role?" },
+  { label: "Top metrics", query: "What are your most impactful metrics?" },
+  { label: "AI work", query: "What have you built with AI?" },
+  { label: "How I prioritize", query: "How do you prioritize?" },
 ];
 
-export type Entry = {
-  id: string;
-  keywords: string[];
-  tool: string; // the "tool use" flourish line
-  answer: string; // light markdown: **bold**, blank-line paragraphs, "- " bullets
-};
+type Entry = { k: string[]; a: string };
 
 const KB: Entry[] = [
   {
-    id: "about",
-    keywords: ["about", "who", "yourself", "summary", "bio", "tell me about", "background", "you"],
-    tool: "reading profile.summary",
-    answer:
-      "I'm Ryan, a product manager with **6+ years** owning money movement and financial infrastructure across institutional and consumer platforms.\n\nMost recently at Coinbase I owned funds flow, key management, and compliance for the institutional product group, while shipping AI powered tooling adopted across product and engineering.\n\nI think like an engineer and operate like a product leader.",
+    k: ["about", "who", "yourself", "summary", "bio", "background"],
+    a: "I'm Ryan, a product manager with **6+ years** across crypto infrastructure, payments, and fintech.\n\nBefore tech I was a professional chef. Then a computer science degree, then years living and working abroad, where I learned Spanish to fluency, which is how I met my wife. That path shows in how I work: calm under pressure, sharp communication, and an engineer's curiosity.\n\nMost recently at Coinbase I owned the core staking platform, the orchestration service moving customer funds from off chain to on chain across **8 assets**.",
   },
   {
-    id: "last-role",
-    keywords: ["last role", "current", "recent", "now", "latest", "present", "coinbase", "doing now", "most recent"],
-    tool: "querying experience where current = true",
-    answer:
-      "My most recent role is **Product Manager at Coinbase** (May 2025 to May 2026), in the institutional product group.\n\nHighlights:\n- Facilitated **$4.5B** in funds flow through third party provider API integrations, launching the first ETH ETF\n- Managed the migration of **$15B** in assets to new key management infrastructure, saving **$2M/yr**\n- Led compliance strategy for **1.3M** global users, preserving **$120M** in annual revenue\n- Shipped an agentic **MCP** that cut engineering integration time **62% (40 to 15 weeks)**",
+    k: ["last role", "current", "recent", "latest", "coinbase", "most recent", "staking"],
+    a: "My most recent role was **Product Manager at Coinbase** (May 2025 to May 2026), as DRI for the core staking platform moving customer funds on chain across **8 assets**.\n- Facilitated **$4.5B** in institutional ETF funds flow; one launch moved **$1B** in its first 24 hours\n- Led the MiCA segregation work protecting **1.3M** users and preserving **$120M** in annual revenue\n- Managed the **$15B** key management migration, saving **$2M/yr** in legacy costs\n- Shipped AI tooling that cut engineering integration time **62%**",
   },
   {
-    id: "metrics",
-    keywords: ["metric", "impact", "number", "result", "achievement", "impactful", "kpi", "outcome", "biggest", "proud"],
-    tool: "aggregating metrics across roles",
-    answer:
-      "The numbers I'm proudest of:\n- **$15B** in assets migrated to new key management infrastructure\n- **$4.5B** in funds flow facilitated, including the first ETH ETF\n- **$1B** in liquidity attracted to Hemi across 60+ partner integrations\n- **$180M** in at risk funds surfaced and recovered to full resolution\n- **62%** faster engineering integrations with an agentic MCP\n- **0 → 100K** users driven in six months through UI/UX",
+    k: ["metric", "impact", "number", "result", "achievement", "impactful", "proud", "top"],
+    a: "The numbers I'm proudest of:\n- **$15B** in assets migrated to new key management infrastructure\n- **$4.5B** in ETF funds flow, **$1B** of it in one launch's first 24 hours\n- **$24M** in live funds migrated in a single day by reframing a 16 week build\n- **$1B+** liquidity attracted to Hemi across **60+** integrations\n- **$180M** in at risk funds surfaced and recovered\n- **62%** faster integrations with an agentic MCP, **75%** with an LLM runbook\n- **0 to 200K+** users on Hemi's consumer apps",
   },
   {
-    id: "companies",
-    keywords: ["compan", "where", "worked", "history", "experience", "timeline", "career", "jobs", "employ"],
-    tool: "listing experience[] ordered by date desc",
-    answer:
-      "Where I've worked:\n- **Coinbase** · Product Manager · 2025 to 2026 · institutional funds flow + AI tooling\n- **Hemi** (built by Bloq) · Senior PM · 2023 to 2025 · L2 launch, bridge, wallets\n- **Bloq** · Product Manager · 2021 to 2023 · onchain financial infrastructure\n- **Weight Watchers** · Software Engineering Intern · 2019 · NLP + data systems\n\nScroll down for the full breakdown of each.",
+    k: ["compan", "where", "worked", "history", "experience", "timeline", "career"],
+    a: "Where I've worked:\n- **Coinbase** · Product Manager · 2025 to 2026\n- **Hemi** · PM to Senior PM · 2023 to 2025\n- **Bloq** · Product Manager · 2021 to 2023\n- **Weight Watchers** · Data Science / ML Intern · 2019",
   },
   {
-    id: "ai",
-    keywords: ["ai", "llm", "mcp", "claude", "tooling", "automation", "agent", "model", "gen ai", "machine learning"],
-    tool: "grep 'AI' experience/",
-    answer:
-      "AI is central to how I work. At Coinbase I:\n- Shipped an **agentic MCP** for engineering workflows that cut integration time **62% (40 to 15 weeks)**\n- Built an **LLM powered runbook** that cut partner integration time for ten engineers **75% (16 to 4 weeks)**\n- Standardized north star metrics and dashboards to align **100+** cross functional stakeholders\n\nI build daily with Claude Code and Codex.",
+    k: ["ai", "llm", "mcp", "claude", "tooling", "automation", "agent", "model", "use ai"],
+    a: "AI shows up in four places in how I work:\n- **Shipping faster**: an agentic MCP systematized protocol onboarding, cutting integration time from **40 to 15 weeks**\n- **Deciding better**: I use AI to pressure test my proposals before they reach the team\n- **Communicating sharper**: AI skill libraries organize company artifacts so PRDs and dashboards build on past solutions\n- **Going deeper**: on one migration I used AI to ramp into protocol mechanics in days instead of weeks\n\nAI extends my leverage as a product leader, not just my speed. I build daily with Claude Code and Codex.",
   },
   {
-    id: "migration",
-    keywords: ["15b", "$15b", "migration", "migrate", "key management", "key-management", "cold", "security", "vulnerab", "infrastructure"],
-    tool: "reading case study: key management migration",
-    answer:
-      "I managed the migration of **$15B** in assets onto new key management infrastructure, saving **$2M per year** in legacy costs.\n\nWhy it mattered: it hardened platform security, unlocked downstream scalability, and cut operating costs, all without customer facing disruption.\n\nIt's the kind of deep infra work that doesn't make headlines but is existential for an institutional platform.",
+    k: ["15b", "$15b", "key management", "infrastructure", "migration", "migrate"],
+    a: "I managed the migration of **$15B** in assets onto new key management infrastructure across 8 assets, saving **$2M per year** in legacy costs, without customer facing disruption.\n\nSeparately, my favorite migration story: engineering scoped one move at **16 weeks** against a deadline of weeks. I pushed on what actually had to be true, and we moved **$24M** in live funds in a **single day** with a configuration change.",
   },
   {
-    id: "hemi",
-    keywords: ["hemi", "bridge", "l2", "launch", "liquidity", "cross-chain", "cross chain", "dex", "150k", "transactions"],
-    tool: "reading case study: hemi launch",
-    answer:
-      "At **Hemi** (built by Bloq) I owned end to end product strategy for a modular L2:\n- Drove user acquisition **0 → 100K** in six months through UI/UX\n- Attracted **$1B** in liquidity across **60+** partner integrations\n- Led the cross chain **bridge** and **wallet integrations**, facilitating **$500M** in liquidity\n- Grew DAU **70%** over three months through funnel analysis",
+    k: ["24m", "$24m", "single day", "one day", "config", "reframe", "16 week", "constraint", "migration", "migrate"],
+    a: "Engineering scoped a migration at **16 weeks** against a deadline of weeks, and the deadline could not move. Both were right, because we were solving the wrong problem.\n\nI stopped optimizing the plan and asked what actually had to be true. Walking the full flow with the owning teams, the dependency lived in one place. We moved **$24M** in live customer funds in a **single day** with a configuration change, retired **$2M** in annual cost, and kept the full build on the roadmap.\n\nWhen two teams' constraints collide, the problem is usually the framing, not the constraint.",
   },
   {
-    id: "bloq",
-    keywords: ["bloq", "visa", "institutional", "custody", "bitgo", "discover", "aum", "api", "0 to 1", "0->1"],
-    tool: "reading case study: bloq infrastructure",
-    answer:
-      "At **Bloq** I shipped onchain financial infrastructure:\n- Owned end to end development of Visa's first **crypto yield product**, full stack from API to UI\n- Led **0 → 1** adoption of core platform services, scaling onchain infra to support **$25M** in user funds\n- Advised **Discover Bank** on emerging trends and technologies",
+    k: ["hemi", "bridge", "tunnel", "l2", "launch", "liquidity", "cross chain", "wallet", "tvl"],
+    a: "At **Hemi**, a Bitcoin L2, I grew from PM to Senior PM owning the consumer surface and the bridge:\n- Drove **0 to 200K+** active accounts in six months\n- Led the cross chain bridge end to end: **$500M** facilitated in 2 weeks, **$1B+ TVL** within 3 months\n- The network launch attracted **$1B** in liquidity in 4 weeks across **60+** DeFi integrations\n- Lifted participation from **73% to 95%** with a proof of personhood app",
   },
   {
-    id: "compliance",
-    keywords: ["compliance", "mica", "governance", "regulat", "legal", "canada", "canadian", "europe", "european", "120m"],
-    tool: "reading case study: compliance and governance",
-    answer:
-      "I led compliance strategy, architecting regionally compliant platform services for **1.3M** global users.\n\nThat work protected a **$1B** international market and preserved **$120M** in annual revenue through regulatory change.",
+    k: ["miner", "pop", "wasm", "funnel", "drop off", "declin", "data story"],
+    a: "My favorite data story: a first of its kind consumer mining app, **2,000** daily users, participation declining **5%** week over week with no clear cause.\n\nCommunity feedback generated the hypotheses; funnel data told me which ones mattered. We shipped three fixes: wallet balance visibility, session reuse, and a clear path to starting funds. The decline reversed and the app peaked at **100K** unique miners, at one point **93%** of Bitcoin testnet3 traffic.\n\nFeedback tells you what hurts. Data tells you whether it matters.",
   },
   {
-    id: "etf",
-    keywords: ["etf", "institutional flow", "galaxy", "bitmine", "vendor", "4.5b", "$4.5b", "funds flow"],
-    tool: "reading case study: institutional etf",
-    answer:
-      "I facilitated **$4.5B** in funds flow through third party provider **API integrations**, including launching the first **ETH ETF** product offering.\n\nI owned the technical API requirements and stakeholder alignment end to end, from contract through launch.",
+    k: ["sybil", "bot", "verification", "personhood", "demos", "integrity", "wau"],
+    a: "Weekly participation on Hemi's incentive platform slid from **85% to 73%** while network activity stayed flat, so it wasn't real disengagement. Miners had grown 100x but unique addresses hadn't: bots were gaming rewards.\n\nWe shipped **DEMOS**, an in house proof of personhood app. **100K** people verified in the first week, and participation recovered to **95%**.",
   },
   {
-    id: "experimentation",
-    keywords: ["experiment", "a/b", "ab test", "payout", "180m", "$180m", "at-risk", "at risk", "data analysis", "$900k", "900k"],
-    tool: "reading case study: data driven wins",
-    answer:
-      "A couple of data driven wins I like:\n- Surfaced **$180M** in at risk funds through data analysis and led the financial team recovery to full resolution\n- Captured **$900K** in revenue by optimizing retail payout flows with **SQL** and experimentation",
+    k: ["bloq", "visa", "custody", "discover", "yield", "onchain"],
+    a: "At **Bloq** I shipped onchain financial infrastructure:\n- Owned Visa's first **crypto yield product**, full stack from API to UI\n- Scaled an institutional product line to **$25M** in assets across **12 integrations**\n- Owned delivery across three API infrastructure products\n- Advised **Discover Bank's** innovation team on emerging technology and roadmap strategy",
   },
   {
-    id: "skills",
-    keywords: ["skill", "stack", "tech", "tools", "language", "code", "python", "sql", "solidity", "strong", "good at"],
-    tool: "cat skills.json",
-    answer:
-      "**Product:** Metrics ownership, north star definition, funnel optimization, testing & experimentation, roadmapping, stakeholder management, cross functional leadership, user research, developer experience, Agile.\n\n**Technical & AI:** LLM powered tooling, workflow automation, Python, SQL, JavaScript, Solidity, REST, Postman, Snowflake, Datadog, Looker, Claude Code, Codex, GitHub, Linear, Jira, Figma.\n\n**Languages:** English, Spanish.",
+    k: ["compliance", "governance", "regulat", "mica", "120m", "1.3m", "segregat"],
+    a: "New regulation (**MiCA**) meant segregating funds, keys, and ledgers by jurisdiction, or shutting staking down in those markets. The deadline was the regulator's, not ours.\n\nThe insight: segregation lives at the layer controlling the funds, and that differs by protocol. We partitioned one shared pipeline by jurisdiction and enforced it in code, because a missed tag is a breach, not a bug.\n\nMigrated **$1B** with zero downtime and zero commingling, protecting **1.3M** users and **$120M** in annual revenue.",
   },
   {
-    id: "education",
-    keywords: ["education", "school", "degree", "study", "college", "university", "fau", "computer science"],
-    tool: "reading education + certifications",
-    answer:
-      "**B.S. in Computer Science**, Florida Atlantic University (2020).\n\nCertifications: **PMP** (2024), Product Management Certificate from eCornell (2023), and a Data Science Certificate (2020).",
+    k: ["etf", "institutional", "4.5b", "funds flow", "stakeholder", "risk"],
+    a: "I was product lead for the third party integrations institutions depended on to launch their **ETFs**. End to end testing was blocked by protocol timelines measured in months, against a client deadline measured in weeks.\n\nThe teams withholding approval weren't refusing to launch. They were being asked to accept a risk nobody had defined. I named each risk, quantified it, bounded it with mitigations, and committed to a date to close the gap. Every stakeholder signed off.\n\nWe launched on the client's date, and the integration moved **$1B in the first 24 hours**.",
   },
   {
-    id: "contact",
-    keywords: ["contact", "hire", "email", "reach", "available", "resume", "cv", "connect", "linkedin", "hiring", "talk"],
-    tool: "resolving contact channels",
-    answer:
-      "Happy to talk. You can reach me at **ryanmilrad34@gmail.com** or connect on **LinkedIn**.\n\nThe contact section at the bottom of the page has direct links.",
+    k: ["prioritiz", "roadmap", "tradeoff", "rice", "capacity", "say no", "protect"],
+    a: "Prioritization is really a question about what you protect.\n\nAhead of Hemi's launch, a consumer app driving 20K daily users was proposed as a Day 1 build. I scored it with **RICE**, effort scoped with engineering rather than guessed, and it came out high effort, low impact against our north star. I deferred it and said what the deferral protected: the features the launch depended on. We hit go live and drew **$1B+ TVL** within days.\n\nDeferring a feature sounds like rejection. Deferring it to protect what the launch depends on is a tradeoff people can get behind.",
+  },
+  {
+    k: ["design", "designer", "ux", "ui process", "work with design"],
+    a: "I never take a UI request straight to design. First the why: which user pain, changing which behavior, moving which metric. That chain has to be complete.\n\nThen engineering, before design, to learn what the technology can and cannot expose. Then I write the user story, not the screen, and hand the designer the problem instead of a solution.\n\nMy job is to make the problem sharp enough that a good designer goes further with it than I could. I review against the user story, not my taste.",
+  },
+  {
+    k: ["data", "sql", "analytic", "experiment", "a/b", "measure"],
+    a: "Feedback tells you what hurts. Data tells you whether it matters.\n\nI use community signal and support tickets to generate hypotheses, then validate them against funnel data before committing engineering time. SQL for the questions, event tracking for the funnels, partial fleet validation before full rollouts.\n\nAnd honest attribution: separating a demand driver from a conversion barrier is the difference between understanding your product and getting lucky.",
+  },
+  {
+    k: ["principle", "philosophy", "how do you work", "approach", "operate", "style"],
+    a: "A few principles I keep coming back to:\n- Diagnose before solving, and push on the actual requirement before optimizing the proposed solution\n- Prioritization is what you protect\n- Treat compliance and safety as product problems, not gates\n- Enforce decisions in the system, not by policing\n- Feedback tells you what hurts, data tells you whether it matters",
+  },
+  {
+    k: ["chef", "fun", "personal", "hobby", "spanish", "interesting", "cook"],
+    a: "Before tech I was a **professional chef**. Kitchens taught me calm under pressure and communication that has to land the first time.\n\nThen a computer science degree, then living and working abroad, where I picked up **Spanish to fluency**, which is how I met my wife.\n\nEngineering taught me depth. Product is where it all meets.",
+  },
+  {
+    k: ["skill", "stack", "tech", "tools", "python"],
+    a: "**Product:** metrics ownership, north star definition, funnel optimization, experimentation, roadmapping, stakeholder management.\n\n**Technical & AI:** LLM tooling, Python, SQL, JavaScript, Solidity, Claude Code, Codex, Snowflake, Datadog, Looker.\n\n**Languages:** English, Spanish.",
+  },
+  {
+    k: ["education", "school", "degree", "college", "university", "fau", "certif"],
+    a: "**B.S. in Computer Science**, Florida Atlantic University (2020).\n\nCertifications: **PMP** (2024), Product Management Certificate from eCornell (2023), Data Science Certificate (2020).",
+  },
+  {
+    k: ["contact", "hire", "email", "reach", "available", "connect", "linkedin"],
+    a: "Happy to talk. Reach me at **ryanmilrad34@gmail.com** or connect on **LinkedIn**.",
   },
 ];
 
-const FALLBACK: Omit<Entry, "keywords"> = {
-  id: "fallback",
-  tool: "no exact match · suggesting commands",
-  answer:
-    "I don't have a scripted answer for that one yet. Try one of the suggested commands, or ask about my **roles**, **metrics**, **AI work**, the **$15B migration**, or how to **get in touch**.",
-};
+const FALLBACK =
+  "Try asking about my **roles**, **top metrics**, **AI work**, the **$15B migration**, **how I prioritize**, my favorite **data story**, or the **chef to crypto** path.";
 
-export type Response = { tool: string; answer: string };
-
-export function getResponse(query: string): Response {
-  const q = query.toLowerCase().trim();
-  if (!q) return { tool: FALLBACK.tool, answer: FALLBACK.answer };
-
-  let best: { entry: Entry; score: number } | null = null;
-
-  for (const entry of KB) {
-    let score = 0;
-    for (const kw of entry.keywords) {
-      if (q.includes(kw)) score += kw.length; // longer matches weigh more
-    }
-    if (score > 0 && (!best || score > best.score)) best = { entry, score };
+export function getAnswer(query: string): string {
+  const q = (query || "").toLowerCase().trim();
+  if (!q) return FALLBACK;
+  let best: Entry | null = null;
+  let bestScore = 0;
+  for (const e of KB) {
+    let s = 0;
+    for (const kw of e.k) if (q.includes(kw)) s += kw.length; // longer matches weigh more
+    if (s > bestScore) { bestScore = s; best = e; }
   }
-
-  if (best) return { tool: best.entry.tool, answer: best.entry.answer };
-  return { tool: FALLBACK.tool, answer: FALLBACK.answer };
+  return best ? best.a : FALLBACK;
 }
