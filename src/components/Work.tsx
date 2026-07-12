@@ -51,6 +51,38 @@ function Lockup({ id }: { id: string }) {
   );
 }
 
+/* The BloqStake API, condensed from the real docs: one call spins up
+   an Ethereum validator and stakes 32 ETH. The product was the API,
+   so the API is the artwork. */
+function BloqTerminal() {
+  return (
+    <div className="term" role="img" aria-label="BloqStake API example: one call creates an Ethereum validator and stakes 32 ETH">
+      <div className="term-bar">
+        <span className="term-dot" style={{ background: "#ff5f57" }} />
+        <span className="term-dot" style={{ background: "#febc2e" }} />
+        <span className="term-dot" style={{ background: "#28c840" }} />
+        <span className="term-title">bloqstake · api</span>
+      </div>
+      <pre className="term-body">
+        <code>
+          <span className="tc-com"># stake 32 ETH: spin up a validator</span>{"\n"}
+          <span className="tc-p">$</span> curl -X <span className="tc-m">POST</span> api.bloq.com/staking/ethereum/mainnet/validators \{"\n"}
+          {"    "}-H <span className="tc-s">"Authorization: Bearer &lt;token&gt;"</span> \{"\n"}
+          {"    "}-d <span className="tc-s">{"'{ \"withdrawalAddress\": \"0xA9f3…C21e\" }'"}</span>{"\n"}
+          {"\n"}
+          <span className="tc-ok">201 Created</span>{"\n"}
+          {"{"}{"\n"}
+          {"  "}<span className="tc-k">"chain"</span>:  <span className="tc-s">"mainnet"</span>,{"\n"}
+          {"  "}<span className="tc-k">"pubkey"</span>: <span className="tc-s">"91adb75d…8697b2"</span>,{"\n"}
+          {"  "}<span className="tc-k">"status"</span>: <span className="tc-s">"active_online"</span>,{"\n"}
+          {"  "}<span className="tc-k">"apr"</span>:    <span className="tc-n">3.42</span>{"\n"}
+          {"}"}<span className="term-cursor" />
+        </code>
+      </pre>
+    </div>
+  );
+}
+
 function JobCard({ job }: { job: Job }) {
   const [open, setOpen] = useState(false);
   const [seen, setSeen] = useState(false); // reveal in
@@ -105,8 +137,10 @@ function JobCard({ job }: { job: Job }) {
             </div>
           ))}
         </div>
-      ) : (
+      ) : job.media.kind === "image" ? (
         <img className="tn-shot" src={job.media.src} alt={job.media.alt} />
+      ) : (
+        <BloqTerminal />
       )}
     </div>
   );

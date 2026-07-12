@@ -30,7 +30,11 @@ export type Job = {
   headline: string;
   body: string; // markdown lite: **bold**
   role: string;
-  media: { kind: "rows"; rows: JobRow[] } | { kind: "image"; src: string; alt: string } | null;
+  media:
+    | { kind: "rows"; rows: JobRow[] }
+    | { kind: "image"; src: string; alt: string }
+    | { kind: "code" } // the BloqStake API terminal, rendered in Work.tsx
+    | null;
   bullets?: string[]; // markdown lite: **bold**
   plx: number;
   compact?: boolean;
@@ -77,7 +81,7 @@ export const jobs: Job[] = [
     body:
       "Enterprise blockchain infrastructure, the onramp bringing traditional financial institutions onchain. I shipped Visa's first crypto yield product full stack, from API to UI.",
     role: "Product Manager · May 2021 to Aug 2023",
-    media: null,
+    media: { kind: "code" },
     bullets: [
       "Owned end to end development of Visa's first crypto yield product, the full stack from API to UI.",
       "Led **0 to 1** adoption of core platform services supporting **$25M** in user funds.",
