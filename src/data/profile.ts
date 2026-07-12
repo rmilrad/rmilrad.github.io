@@ -39,31 +39,24 @@ export type Job = {
 export const jobs: Job[] = [
   {
     id: "coinbase",
-    colors: { bg: "#0e1a30", hd: "#6d97ff", tx: "#a4b6dd", rows: "#0a1122", mk: "#0052ff" },
+    colors: { bg: "#e9f0ff", hd: "#0043cc", tx: "#3f57a6", rows: "#dde7fd", mk: "#0052ff" },
     headline: "The most trusted staking infrastructure.",
     body:
       "I supported the institutional ETFs moving billions through Coinbase, architected the infrastructure that segregates MiCA regulated funds for international users, and shipped the AI tooling that made engineering faster.",
     role: "Product Manager · May 2025 to May 2026",
-    media: {
-      kind: "rows",
-      rows: [
-        { icon: "$", name: "Institutional ETF funds flow", value: "$4.5B", sub: "through third party integrations" },
-        { icon: "✓", name: "Compliance and reconciliation", value: "1.3M", sub: "users, $1B market, $120M revenue" },
-        { icon: "%", name: "Agentic MCP eng workflows", value: "62%", sub: "integrations cut from 40 to 15 weeks" },
-        { icon: "⇄", name: "Key management migration", value: "$15B", sub: "$2M saved per year in legacy costs" },
-      ],
-    },
+    media: null,
     bullets: [
+      "Facilitated **$4.5B** in institutional ETF funds flow through third party integrations.",
+      "Led compliance and reconciliation for **1.3M** users, protecting a **$1B** market and **$120M** in revenue.",
+      "Managed the **$15B** key management migration, saving **$2M** per year in legacy costs.",
+      "Shipped an agentic MCP cutting engineering integration time **62%**, from 40 to 15 weeks.",
       "Surfaced **$180M** in at risk funds and led the financial recovery to full resolution.",
-      "Built an LLM powered runbook cutting partner integration time **75%** for a team of ten engineers.",
-      "Captured **$900K** in revenue optimizing retail payout flows with SQL and experimentation.",
-      "Standardized north star metrics and dashboards aligning **100+** cross functional stakeholders.",
     ],
     plx: 24,
   },
   {
     id: "hemi",
-    colors: { bg: "#261209", hd: "#ff6a3d", tx: "#d8a48f", rows: "#190b04", mk: "#ff5d22" },
+    colors: { bg: "#fdeee5", hd: "#c2410c", tx: "#96522f", rows: "#f7e0d2", mk: "#ff5d22" },
     headline: "Zero to 200K+ users on a new L2.",
     body:
       "A modular Layer 2 protocol bringing Bitcoin security and programmability to DeFi. I owned end to end product strategy, from UI and UX through the liquidity that followed.",
@@ -79,19 +72,12 @@ export const jobs: Job[] = [
   },
   {
     id: "bloq",
-    colors: { bg: "#0c1c28", hd: "#5aa7e8", tx: "#9dbfda", rows: "#07131d", mk: "#2d9cff" },
+    colors: { bg: "#e7f3fc", hd: "#026bb8", tx: "#3a6685", rows: "#d9ecf9", mk: "#2d9cff" },
     headline: "Banks, brought onchain.",
     body:
       "Enterprise blockchain infrastructure, the onramp bringing traditional financial institutions onchain. I shipped Visa's first crypto yield product full stack, from API to UI.",
     role: "Product Manager · May 2021 to Aug 2023",
-    media: {
-      kind: "rows",
-      rows: [
-        { icon: "$", name: "Visa crypto yield product", value: "0 → 1", sub: "full stack, API to UI" },
-        { icon: "+", name: "User funds supported", value: "$25M", sub: "core platform services" },
-        { icon: "✓", name: "Discover Bank", value: "Advisory", sub: "emerging trends and tech" },
-      ],
-    },
+    media: null,
     bullets: [
       "Owned end to end development of Visa's first crypto yield product, the full stack from API to UI.",
       "Led **0 to 1** adoption of core platform services supporting **$25M** in user funds.",
@@ -101,7 +87,7 @@ export const jobs: Job[] = [
   },
   {
     id: "ww",
-    colors: { bg: "#171233", hd: "#8f8aff", tx: "#a9a5d6", rows: "#100c26", mk: "#3383c4" },
+    colors: { bg: "#edecfa", hd: "#4f46e5", tx: "#5f5a9e", rows: "#e0defa", mk: "#3383c4" },
     headline: "Where the engineering instinct started.",
     body:
       "Consumer health and nutrition platform serving millions of members. I built NLP workflows in Python that cut catalog redundancy **68%**, working across Python, NLP, and SQL on the data science team.",

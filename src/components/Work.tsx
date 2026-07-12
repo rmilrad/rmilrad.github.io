@@ -12,7 +12,7 @@ function Lockup({ id }: { id: string }) {
           <circle cx="12" cy="12" r="12" fill="#0052ff" />
           <path d="M12 5.4a6.6 6.6 0 1 0 6.32 8.5h-3.55A3.3 3.3 0 0 1 8.7 12a3.3 3.3 0 0 1 6.07-1.9h3.55A6.6 6.6 0 0 0 12 5.4Z" fill="#fff" />
         </svg>
-        <span className="lgo-word" style={{ color: "#6d97ff" }}>coinbase</span>
+        <span className="lgo-word" style={{ color: "#0052ff" }}>coinbase</span>
       </span>
     );
   }
@@ -20,7 +20,7 @@ function Lockup({ id }: { id: string }) {
     return (
       <span className="lgo" aria-label="Hemi">
         <img src="/images/hemi-mark.png" width={21} height={21} alt="" />
-        <span className="lgo-word" style={{ color: "#fff" }}>hemi</span>
+        <span className="lgo-word" style={{ color: "#141412" }}>hemi</span>
       </span>
     );
   }
@@ -28,7 +28,7 @@ function Lockup({ id }: { id: string }) {
     return (
       <span className="lgo" aria-label="Bloq">
         <svg viewBox="0 0 78.333 40" width="43" height="22" aria-hidden="true">
-          <g fill="#fff">
+          <g fill="#2d9cff">
             <path d="M4.938,2.449V28.48A2.469,2.469,0,0,1,0,28.48V2.449A2.468,2.468,0,0,1,4.212.721a2.4,2.4,0,0,1,.727,1.729" transform="translate(24.624 0)" />
             <path d="M11.122,30.937a11.292,11.292,0,0,1-2.241-.224A11.138,11.138,0,0,1,1.9,26.076,10.909,10.909,0,0,1,0,19.911,1.979,1.979,0,0,1,.007,19.7.413.413,0,0,1,0,19.6V2.449A2.432,2.432,0,0,1,.723.717a2.484,2.484,0,0,1,3.5,0,2.424,2.424,0,0,1,.719,1.729v8.29a11.142,11.142,0,0,1,6.184-1.861,11.286,11.286,0,0,1,2.24.224,11.124,11.124,0,0,1,6.976,4.639,10.952,10.952,0,0,1,0,12.336,11.117,11.117,0,0,1-6.976,4.637A11.288,11.288,0,0,1,11.122,30.937Zm0-17.2A6.236,6.236,0,0,0,6.971,15.3a6.14,6.14,0,0,0-2.033,3.872,6.018,6.018,0,0,0-.044.736v.118a6.1,6.1,0,0,0,.523,2.361A6.166,6.166,0,0,0,6,23.418,6.248,6.248,0,0,0,16.28,23.36a6.161,6.161,0,0,0,.574-1.048,6.147,6.147,0,0,0,0-4.806,6.167,6.167,0,0,0-.574-1.05,6.226,6.226,0,0,0-5.158-2.724Z" />
             <path d="M11.118,22.057a11.288,11.288,0,0,1-2.241-.224A11.131,11.131,0,0,1,1.9,17.194a10.946,10.946,0,0,1,0-12.332A11.122,11.122,0,0,1,8.877.224a11.314,11.314,0,0,1,4.481,0,11.131,11.131,0,0,1,6.978,4.638,10.947,10.947,0,0,1,0,12.332,11.121,11.121,0,0,1-6.978,4.639A11.283,11.283,0,0,1,11.118,22.057Zm0-17.2A6.235,6.235,0,0,0,5.955,7.575a6.159,6.159,0,0,0-.574,1.049,6.151,6.151,0,0,0,0,4.808,6.162,6.162,0,0,0,.574,1.049,6.248,6.248,0,0,0,10.324,0,6.163,6.163,0,0,0,.574-1.049,6.151,6.151,0,0,0,0-4.808,6.16,6.16,0,0,0-.574-1.049,6.232,6.232,0,0,0-5.161-2.722Z" transform="translate(32.08 8.846)" />
@@ -46,7 +46,7 @@ function Lockup({ id }: { id: string }) {
         <path d="M6 4.6l2.4 6.6 2.3-5.1 2.3 5.1 2.4-6.6" fill="none" stroke="#fff" strokeWidth="2.6" strokeLinejoin="miter" />
         <path d="M6 12.6l2.4 6.6 2.3-5.1 2.3 5.1 2.4-6.6" fill="none" stroke="#fff" strokeWidth="2.6" strokeLinejoin="miter" />
       </svg>
-      <span className="lgo-word" style={{ color: "#fff" }}>WeightWatchers</span>
+      <span className="lgo-word" style={{ color: "#141412" }}>WeightWatchers</span>
     </span>
   );
 }
@@ -117,7 +117,7 @@ function JobCard({ job }: { job: Job }) {
       <h3>{job.headline}</h3>
       <p className="bx-body">{renderInline(job.body)}</p>
       <p className="bx-role">{job.role}</p>
-      {job.bullets && (
+      {job.media && job.bullets && (
         <button
           className="bx-cta"
           type="button"
@@ -144,18 +144,28 @@ function JobCard({ job }: { job: Job }) {
         <div className="bx-cols">
           {text}
           <div className="bx-art" data-plx={job.plx}>
-            <div className="art-stage">
-              {media}
-              {job.bullets && (
-                <div className="art-detail" id={`d-${job.id}`}>
-                  <ul className="bx-more">
-                    {job.bullets.map((b, i) => (
-                      <li key={i}>{renderInline(b)}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
+            {job.media ? (
+              <div className="art-stage">
+                {media}
+                {job.bullets && (
+                  <div className="art-detail" id={`d-${job.id}`}>
+                    <ul className="bx-more">
+                      {job.bullets.map((b, i) => (
+                        <li key={i}>{renderInline(b)}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ) : (
+              job.bullets && (
+                <ul className="bx-more">
+                  {job.bullets.map((b, i) => (
+                    <li key={i}>{renderInline(b)}</li>
+                  ))}
+                </ul>
+              )
+            )}
           </div>
         </div>
       )}
