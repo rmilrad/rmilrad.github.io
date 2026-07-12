@@ -53,10 +53,61 @@ function Lockup({ id }: { id: string }) {
 
 /* The BloqStake API, condensed from the real docs: one call spins up
    an Ethereum validator and stakes 32 ETH. The product was the API,
-   so the API is the artwork. */
+   so the API is the artwork. Types itself out when scrolled into
+   view, finishing in about two seconds. */
+const TERM_TOKENS: { t: string; c?: string }[] = [
+  { t: "# stake 32 ETH: spin up a validator", c: "tc-com" }, { t: "\n" },
+  { t: "$", c: "tc-p" }, { t: " curl -X " }, { t: "POST", c: "tc-m" },
+  { t: " api.bloq.com/staking/ethereum/mainnet/validators \\\n    -H " },
+  { t: "\"Authorization: Bearer <token>\"", c: "tc-s" }, { t: " \\\n    -d " },
+  { t: "'{ \"withdrawalAddress\": \"0xA9f3…C21e\" }'", c: "tc-s" }, { t: "\n\n" },
+  { t: "201 Created", c: "tc-ok" }, { t: "\n{\n  " },
+  { t: "\"chain\"", c: "tc-k" }, { t: ":  " }, { t: "\"mainnet\"", c: "tc-s" }, { t: ",\n  " },
+  { t: "\"pubkey\"", c: "tc-k" }, { t: ": " }, { t: "\"91adb75d…8697b2\"", c: "tc-s" }, { t: ",\n  " },
+  { t: "\"status\"", c: "tc-k" }, { t: ": " }, { t: "\"active_online\"", c: "tc-s" }, { t: ",\n  " },
+  { t: "\"apr\"", c: "tc-k" }, { t: ":    " }, { t: "3.42", c: "tc-n" }, { t: "\n}" },
+];
+const TERM_TOTAL = TERM_TOKENS.reduce((n, tok) => n + tok.t.length, 0);
+
 function BloqTerminal() {
+  const [typed, setTyped] = useState(0);
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || !("IntersectionObserver" in window)) { setTyped(TERM_TOTAL); return; }
+    let raf = 0;
+    const DURATION = 2200; // ms to fully type out
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        const t0 = performance.now();
+        const step = (now: number) => {
+          const n = Math.min(TERM_TOTAL, Math.round(((now - t0) / DURATION) * TERM_TOTAL));
+          setTyped(n);
+          if (n < TERM_TOTAL) raf = requestAnimationFrame(step);
+        };
+        raf = requestAnimationFrame(step);
+      });
+    }, { threshold: 0.35 });
+    io.observe(el);
+    return () => { io.disconnect(); cancelAnimationFrame(raf); };
+  }, []);
+
+  let used = 0;
+  const visible = TERM_TOKENS.map((tok, i) => {
+    const remaining = typed - used;
+    used += tok.t.length;
+    if (remaining <= 0) return null;
+    const text = remaining >= tok.t.length ? tok.t : tok.t.slice(0, remaining);
+    return tok.c ? <span className={tok.c} key={i}>{text}</span> : <span key={i}>{text}</span>;
+  });
+
   return (
-    <div className="term" role="img" aria-label="BloqStake API example: one call creates an Ethereum validator and stakes 32 ETH">
+    <div className="term" ref={ref} role="img" aria-label="BloqStake API example: one call creates an Ethereum validator and stakes 32 ETH">
       <div className="term-bar">
         <span className="term-dot" style={{ background: "#ff5f57" }} />
         <span className="term-dot" style={{ background: "#febc2e" }} />
@@ -65,18 +116,8 @@ function BloqTerminal() {
       </div>
       <pre className="term-body">
         <code>
-          <span className="tc-com"># stake 32 ETH: spin up a validator</span>{"\n"}
-          <span className="tc-p">$</span> curl -X <span className="tc-m">POST</span> api.bloq.com/staking/ethereum/mainnet/validators \{"\n"}
-          {"    "}-H <span className="tc-s">"Authorization: Bearer &lt;token&gt;"</span> \{"\n"}
-          {"    "}-d <span className="tc-s">{"'{ \"withdrawalAddress\": \"0xA9f3…C21e\" }'"}</span>{"\n"}
-          {"\n"}
-          <span className="tc-ok">201 Created</span>{"\n"}
-          {"{"}{"\n"}
-          {"  "}<span className="tc-k">"chain"</span>:  <span className="tc-s">"mainnet"</span>,{"\n"}
-          {"  "}<span className="tc-k">"pubkey"</span>: <span className="tc-s">"91adb75d…8697b2"</span>,{"\n"}
-          {"  "}<span className="tc-k">"status"</span>: <span className="tc-s">"active_online"</span>,{"\n"}
-          {"  "}<span className="tc-k">"apr"</span>:    <span className="tc-n">3.42</span>{"\n"}
-          {"}"}<span className="term-cursor" />
+          {visible}
+          <span className="term-cursor" />
         </code>
       </pre>
     </div>
@@ -139,8 +180,10 @@ function JobCard({ job }: { job: Job }) {
         </div>
       ) : job.media.kind === "image" ? (
         <img className="tn-shot" src={job.media.src} alt={job.media.alt} />
-      ) : (
+      ) : job.media.kind === "code" ? (
         <BloqTerminal />
+      ) : (
+        <div className="art-blank" aria-hidden="true" />
       )}
     </div>
   );

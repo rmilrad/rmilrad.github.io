@@ -34,6 +34,7 @@ export type Job = {
     | { kind: "rows"; rows: JobRow[] }
     | { kind: "image"; src: string; alt: string }
     | { kind: "code" } // the BloqStake API terminal, rendered in Work.tsx
+    | { kind: "blank" } // reserved space, visual to come
     | null;
   bullets?: string[]; // markdown lite: **bold**
   plx: number;
@@ -48,7 +49,7 @@ export const jobs: Job[] = [
     body:
       "I supported the institutional ETFs moving billions through Coinbase, architected the infrastructure that segregates MiCA regulated funds for international users, and shipped the AI tooling that made engineering faster.",
     role: "Product Manager · May 2025 to May 2026",
-    media: null,
+    media: { kind: "blank" },
     bullets: [
       "Facilitated **$4.5B** in institutional ETF funds flow through third party integrations.",
       "Led compliance and reconciliation for **1.3M** users, protecting a **$1B** market and **$120M** in revenue.",
@@ -65,7 +66,7 @@ export const jobs: Job[] = [
     body:
       "A modular Layer 2 protocol bringing Bitcoin security and programmability to DeFi. I owned end to end product strategy, from UI and UX through the liquidity that followed.",
     role: "Senior Product Manager · Aug 2023 to May 2025",
-    media: { kind: "image", src: "/images/tunnel.png", alt: "The Hemi Tunnel bridge interface" },
+    media: { kind: "image", src: "/images/hemi-app.png", alt: "The Hemi Tunnel app: transaction history and a confirmed deposit" },
     bullets: [
       "Directed the UI and UX for consumer applications, driving acquisition **0 to 200K+** in six months.",
       "Attracted **$1B** in liquidity across **60+** partner integrations.",
