@@ -149,7 +149,9 @@ export type Project = {
   id: string;
   name: string;
   tagline: string;
-  screens?: { src: string; alt: string }[];
+  video?: string; // demo video (mp4 under /videos)
+  poster?: string; // video poster + landing thumbnail
+  shot?: string; // landing screenshot (falls back to poster)
   inspiration: string;
   problem: string;
   solutionLead?: string;
@@ -162,6 +164,8 @@ export const projects: Project[] = [
     id: "recall",
     name: "Recall",
     tagline: "A memory layer for AI chat that stops you paying for the same tokens twice.",
+    video: "/videos/recall.mp4",
+    poster: "/images/recall-poster.jpg",
     inspiration:
       "At Coinbase, I watched every engineering team independently build their own AI knowledge layers, redundant infrastructure solving the same retrieval problem. That experience made clear that the real cost of AI isn't the model, it's the architecture around it.",
     problem:
@@ -178,8 +182,10 @@ export const projects: Project[] = [
   },
   {
     id: "rwa-vault",
-    name: "Tokenized RWA Vault",
+    name: "Tokenized Yield Vault",
     tagline: "An institutional grade tokenized fund that honors redemptions even when the cash isn't in the vault.",
+    video: "/videos/rwa-vault.mp4",
+    poster: "/images/rwa-vault-poster.jpg",
     inspiration:
       "Tokenized real world assets are moving from thesis to product, with neobanks and asset managers wrapping yield bearing instruments like Treasuries into onchain share classes. I wanted to build the institutional grade version of that myself, not just read about it.",
     problem:

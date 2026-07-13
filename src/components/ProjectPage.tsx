@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { projects } from "../data/profile";
 import { renderInline } from "../lib/rich";
-import RecallMock from "./RecallMock";
-import InterfaceMock from "./InterfaceMock";
 
 export default function ProjectPage({ id }: { id: string }) {
   const p = projects.find((x) => x.id === id);
@@ -37,11 +35,17 @@ export default function ProjectPage({ id }: { id: string }) {
         </header>
       </div>
 
-      <div className="pp-stage">
-        <div className="wrap">
-          {p.id === "recall" ? <RecallMock /> : <InterfaceMock label={`${p.name.toLowerCase()} · dashboard`} />}
+      {p.video && (
+        <div className="pp-stage">
+          <div className="wrap">
+            <div className="pp-video-wrap">
+              <video className="pp-video" controls playsInline preload="metadata" poster={p.poster}>
+                <source src={p.video} type="video/mp4" />
+              </video>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="wrap">
         <div className="pp-writeup">
