@@ -265,20 +265,20 @@ function CoinbaseAssets() {
 
   return (
     <div className="cb-scene" ref={ref} role="img" aria-label="Coinbase staking across major proof of stake assets">
-      <div className="cb-card" style={{ "--d": 12, left: "3%", top: "32%" } as CSSProperties}>
+      <div className="cb-card" style={{ "--d": 10, left: "5%", top: "31%" } as CSSProperties}>
         <span className="cb-mark">{MARK_SOL}</span>
         <span className="cb-name">Solana</span>
       </div>
-      <div className="cb-card" style={{ "--d": 10, left: "56%", top: "22%" } as CSSProperties}>
+      <div className="cb-card" style={{ "--d": 8, left: "54%", top: "24%" } as CSSProperties}>
         <span className="cb-mark">{MARK_ADA}</span>
         <span className="cb-name">Cardano</span>
       </div>
-      <div className="cb-card cb-front" style={{ "--d": 18, left: "26%", top: "4%" } as CSSProperties}>
+      <div className="cb-card cb-front" style={{ "--d": 14, left: "27%", top: "8%" } as CSSProperties}>
         <span className="cb-mark">{MARK_ETH}</span>
         <span className="cb-tag">Staking enabled</span>
         <span className="cb-name">Ethereum</span>
       </div>
-      <div className="cb-card cb-front" style={{ "--d": 22, left: "40%", top: "52%" } as CSSProperties}>
+      <div className="cb-card cb-front" style={{ "--d": 14, left: "39%", top: "45%" } as CSSProperties}>
         <span className="cb-mark">{MARK_AVAX}</span>
         <span className="cb-name">Avalanche</span>
       </div>

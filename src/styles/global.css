@@ -232,7 +232,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline
 /* Coinbase parallax asset grid: floating cards drift opposite the
    cursor and on scroll, each by its own --d depth, clipped in the panel */
 .cb-scene { position: relative; width: 100%; height: clamp(300px, 32vw, 348px); }
-.cb-card { position: absolute; width: clamp(126px, 40%, 156px); aspect-ratio: 1 / 1.04; padding: 14px 16px; border-radius: 18px; display: flex; flex-direction: column; background: linear-gradient(158deg, #2a3246, #171d2b); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 22px 42px rgba(20,20,18,0.26), 0 5px 12px rgba(20,20,18,0.16); will-change: transform; transform: translate3d(calc(var(--mx,0) * var(--d) * -1px), calc((var(--my,0) + var(--sy,0) * 0.5) * var(--d) * -1px), 0); }
+.cb-card { position: absolute; width: clamp(120px, 37%, 148px); aspect-ratio: 1 / 1.03; padding: 14px 16px; border-radius: 18px; display: flex; flex-direction: column; background: linear-gradient(158deg, #2a3246, #171d2b); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 28px rgba(20,20,18,0.22), 0 4px 9px rgba(20,20,18,0.14); will-change: transform; transform: translate3d(calc(var(--mx,0) * var(--d) * -1px), calc((var(--my,0) + var(--sy,0) * 0.4) * var(--d) * -1px), 0); }
 .cb-mark svg { display: block; }
 .cb-tag { margin-top: auto; font-size: 11px; color: rgba(255,255,255,0.5); }
 .cb-name { margin-top: auto; font-size: clamp(17px, 2.1vw, 22px); font-weight: 500; letter-spacing: -0.02em; color: #fff; }
