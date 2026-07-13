@@ -8,6 +8,7 @@ export default function Nav() {
           <a href="#work">Work</a>
           <a href="#credentials">Credentials</a>
           <a href="#writing">Writing</a>
+          <a href="#projects">Projects</a>
           <a href="#people">People</a>
           <a href="#contact">Contact</a>
         </div>

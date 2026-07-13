@@ -5,7 +5,7 @@ import Overview from "./components/Overview";
 import Work from "./components/Work";
 import Credentials from "./components/Credentials";
 import Writing from "./components/Writing";
-// import Projects from "./components/Projects"; // hidden for now, not deleted
+import Projects from "./components/Projects";
 import People from "./components/People";
 import Contact from "./components/Contact";
 
@@ -70,7 +70,7 @@ export default function App() {
         <Work />
         <Credentials />
         <Writing />
-        {/* <Projects /> hidden for now */}
+        <Projects />
         <People />
         <Contact />
       </main>

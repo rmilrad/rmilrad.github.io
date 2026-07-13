@@ -142,12 +142,51 @@ export const articles: Article[] = [
   },
 ];
 
-/* --- side projects (placeholders until real ones are supplied) --- */
-export type Project = { title: string; blurb: string; tags: string[]; url?: string };
+/* --- side projects (case studies: inspiration, problem, build) ---
+   `video` is a path under /videos; when absent a placeholder renders.
+   `built` items support **bold**. */
+export type Project = {
+  id: string;
+  name: string;
+  tagline: string;
+  video?: string;
+  inspired: string;
+  problem: string;
+  built: string[];
+  tags?: string[];
+  link?: string;
+};
 export const projects: Project[] = [
-  { title: "Project one", blurb: "One line on what it does and why you built it.", tags: ["React", "AI"] },
-  { title: "Project two", blurb: "One line on what it does and why you built it.", tags: ["Next.js", "Solidity"] },
-  { title: "Project three", blurb: "One line on what it does and why you built it.", tags: ["Python", "LLM"] },
+  {
+    id: "rwa-vault",
+    name: "Tokenized RWA Vault",
+    tagline: "An institutional grade tokenized fund that honors redemptions even when the cash isn't sitting in the vault.",
+    inspired:
+      "Tokenized real world assets are moving from thesis to product, with neobanks and asset managers wrapping yield bearing instruments like Treasuries into onchain share classes. I wanted to build the institutional grade version of that myself, not just read about it.",
+    problem:
+      "A tokenized fund promises instant, retail friendly access, yet its assets are actually deployed and not always liquid, and its holders must be permissioned. The core question: how do you honor redemptions and keep the accounting provably honest when the cash isn't always sitting in the vault?",
+    built: [
+      "A permissioned **ERC-4626** vault in Solidity, developed test first in **Foundry**.",
+      "A liquidity buffer settles small redemptions instantly, while larger ones book as slow claims at locked NAV.",
+      "A React dashboard on **wagmi/viem** drives the vault live.",
+      "An independent off chain indexer reconciles a mirror ledger against onchain reads, catching any drift to the wei.",
+      "Deployed to the **Base Sepolia** testnet.",
+    ],
+    tags: ["Solidity", "Foundry", "ERC-4626", "React", "Base"],
+  },
+  {
+    id: "project-two",
+    name: "Project two",
+    tagline: "Send me the inspiration, problem, and build for this one and I'll drop it in.",
+    inspired: "What inspired this project goes here, two or three sentences on the thesis behind it.",
+    problem: "The problem it explores goes here, framed as the core question you set out to answer.",
+    built: [
+      "The first thing it is built with.",
+      "The second thing it is built with.",
+      "The third thing it is built with.",
+    ],
+    tags: ["Tag", "Tag", "Tag"],
+  },
 ];
 
 /* --- references (short pulls from LinkedIn recommendations) --- */
