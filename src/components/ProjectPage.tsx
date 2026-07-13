@@ -40,6 +40,7 @@ export default function ProjectPage({ id }: { id: string }) {
           <div className="wrap">
             <div className="pp-video-wrap">
               <video
+                key={p.id}
                 className="pp-video"
                 ref={(el) => { if (el) el.playbackRate = 2; }}
                 autoPlay
