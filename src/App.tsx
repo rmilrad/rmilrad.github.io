@@ -8,11 +8,13 @@ import Writing from "./components/Writing";
 import Projects from "./components/Projects";
 import People from "./components/People";
 import Contact from "./components/Contact";
+import ProjectPage from "./components/ProjectPage";
+import { useRoute } from "./lib/route";
 
 /* Page level motion: reveal on scroll + subtle parallax on [data-plx]
-   panels. Parallax is measured off untransformed parents and clamped
-   so tall elements never over travel. */
-function usePageMotion() {
+   panels. Re-runs on route change so a freshly rendered page wires up
+   its own reveal + parallax. */
+function usePageMotion(routeKey: string) {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -56,11 +58,33 @@ function usePageMotion() {
       io?.disconnect();
       if (onScroll) window.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [routeKey]);
 }
 
 export default function App() {
-  usePageMotion();
+  const route = useRoute();
+  usePageMotion(route.name === "home" ? "home" : `project:${route.id}`);
+
+  // Returning to the home route via a section anchor: scroll to it once
+  // the landing has rendered.
+  useEffect(() => {
+    if (route.name !== "home") return;
+    const h = window.location.hash;
+    if (!h || h === "#" || h === "#top") { window.scrollTo(0, 0); return; }
+    if (h.startsWith("#/")) return;
+    const el = document.querySelector(h);
+    if (el) requestAnimationFrame(() => el.scrollIntoView({ block: "start" }));
+  }, [route]);
+
+  if (route.name === "project") {
+    return (
+      <>
+        <Nav />
+        <ProjectPage id={route.id} />
+      </>
+    );
+  }
+
   return (
     <>
       <Nav />

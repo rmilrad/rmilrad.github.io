@@ -1,14 +1,21 @@
 import { Fragment, type ReactNode } from "react";
 
-/* Parse a single line of **bold** markup into React nodes. */
+/* Parse a single line of inline markup (**bold**, `code`, [text](url)). */
 export function renderInline(text: string): ReactNode {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return parts.map((part, i) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      return <strong key={i}>{part.slice(2, -2)}</strong>;
-    }
-    return <Fragment key={i}>{part}</Fragment>;
-  });
+  const nodes: ReactNode[] = [];
+  const re = /(\*\*([^*]+)\*\*|`([^`]+)`|\[([^\]]+)\]\(([^)]+)\))/g;
+  let last = 0;
+  let key = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) nodes.push(<Fragment key={key++}>{text.slice(last, m.index)}</Fragment>);
+    if (m[2] !== undefined) nodes.push(<strong key={key++}>{m[2]}</strong>);
+    else if (m[3] !== undefined) nodes.push(<code key={key++}>{m[3]}</code>);
+    else if (m[4] !== undefined) nodes.push(<a key={key++} href={m[5]} target="_blank" rel="noreferrer">{m[4]}</a>);
+    last = re.lastIndex;
+  }
+  if (last < text.length) nodes.push(<Fragment key={key++}>{text.slice(last)}</Fragment>);
+  return nodes;
 }
 
 /* Full block renderer: paragraphs + "- " bullet groups, with inline bold. */
