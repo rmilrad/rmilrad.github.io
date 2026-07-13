@@ -142,30 +142,49 @@ export const articles: Article[] = [
   },
 ];
 
-/* --- side projects (case studies: inspiration, problem, build) ---
-   `video` is a path under /videos; when absent a placeholder renders.
-   `built` items support **bold**. */
+/* --- side projects (case studies: inspiration, problem, solution) ---
+   `screens` are UI images composed into an interactive mock (added later);
+   text fields support **bold**. */
 export type Project = {
   id: string;
   name: string;
   tagline: string;
-  video?: string;
-  inspired: string;
+  screens?: { src: string; alt: string }[];
+  inspiration: string;
   problem: string;
-  built: string[];
+  solutionLead?: string;
+  solution: string[];
   tags?: string[];
   link?: string;
 };
 export const projects: Project[] = [
   {
+    id: "recall",
+    name: "Recall",
+    tagline: "A memory layer for AI chat that stops you paying for the same tokens twice.",
+    inspiration:
+      "At Coinbase, I watched every engineering team independently build their own AI knowledge layers, redundant infrastructure solving the same retrieval problem. That experience made clear that the real cost of AI isn't the model, it's the architecture around it.",
+    problem:
+      "Every AI chat resends your entire conversation history with each message. Ten turns in, you're paying for the same tokens ten times over. Uber burned through their full 2026 AI budget in four months for exactly this reason.",
+    solutionLead:
+      "Recall is a memory layer for AI chat that eliminates redundant context and cuts API costs by up to **84%**.",
+    solution: [
+      "Stores and chunks conversations into a **RAG** pipeline, retrieving only what's relevant per turn.",
+      "Routes each query through three tiers by complexity: instant replay, cheap synthesis, or full frontier.",
+      "A real time dashboard with per query cost tracking, savings visualization, and model tuning.",
+      "**Python/FastAPI** backend, React frontend, deployed on **AWS** (ECS Fargate + EFS).",
+    ],
+    tags: ["Python", "FastAPI", "RAG", "React", "AWS"],
+  },
+  {
     id: "rwa-vault",
     name: "Tokenized RWA Vault",
-    tagline: "An institutional grade tokenized fund that honors redemptions even when the cash isn't sitting in the vault.",
-    inspired:
+    tagline: "An institutional grade tokenized fund that honors redemptions even when the cash isn't in the vault.",
+    inspiration:
       "Tokenized real world assets are moving from thesis to product, with neobanks and asset managers wrapping yield bearing instruments like Treasuries into onchain share classes. I wanted to build the institutional grade version of that myself, not just read about it.",
     problem:
       "A tokenized fund promises instant, retail friendly access, yet its assets are actually deployed and not always liquid, and its holders must be permissioned. The core question: how do you honor redemptions and keep the accounting provably honest when the cash isn't always sitting in the vault?",
-    built: [
+    solution: [
       "A permissioned **ERC-4626** vault in Solidity, developed test first in **Foundry**.",
       "A liquidity buffer settles small redemptions instantly, while larger ones book as slow claims at locked NAV.",
       "A React dashboard on **wagmi/viem** drives the vault live.",
@@ -173,19 +192,6 @@ export const projects: Project[] = [
       "Deployed to the **Base Sepolia** testnet.",
     ],
     tags: ["Solidity", "Foundry", "ERC-4626", "React", "Base"],
-  },
-  {
-    id: "project-two",
-    name: "Project two",
-    tagline: "Send me the inspiration, problem, and build for this one and I'll drop it in.",
-    inspired: "What inspired this project goes here, two or three sentences on the thesis behind it.",
-    problem: "The problem it explores goes here, framed as the core question you set out to answer.",
-    built: [
-      "The first thing it is built with.",
-      "The second thing it is built with.",
-      "The third thing it is built with.",
-    ],
-    tags: ["Tag", "Tag", "Tag"],
   },
 ];
 

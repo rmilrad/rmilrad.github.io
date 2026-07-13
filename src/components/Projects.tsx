@@ -1,5 +1,46 @@
-import { projects } from "../data/profile";
+import { projects, type Project } from "../data/profile";
 import { renderInline } from "../lib/rich";
+
+/* Framed "app window" built from the project's UI screenshots. Until
+   real screens are supplied it shows a placeholder; hover hotspots get
+   layered on once the images and their button positions are known. */
+function InterfaceMock({ project }: { project: Project }) {
+  const screen = project.screens?.[0];
+  return (
+    <div className="pj-app">
+      <div className="pj-app-bar">
+        <span className="pj-app-dot" style={{ background: "#ff5f57" }} />
+        <span className="pj-app-dot" style={{ background: "#febc2e" }} />
+        <span className="pj-app-dot" style={{ background: "#28c840" }} />
+        <span className="pj-app-addr">{project.name.toLowerCase()} · dashboard</span>
+      </div>
+      <div className="pj-app-screen">
+        {screen ? (
+          <img src={screen.src} alt={screen.alt} />
+        ) : (
+          <div className="pj-app-ph" aria-label="Interactive interface, coming soon">
+            <div className="phd-side">
+              <span className="phd-nav is-on" /><span className="phd-nav" /><span className="phd-nav" /><span className="phd-nav" />
+            </div>
+            <div className="phd-main">
+              <div className="phd-top">
+                <span className="phd-title" />
+                <span className="phd-btn phd-hot" /><span className="phd-btn" />
+              </div>
+              <div className="phd-tiles"><span /><span /><span /></div>
+              <div className="phd-chart">
+                <i style={{ height: "40%" }} /><i style={{ height: "62%" }} /><i style={{ height: "48%" }} />
+                <i style={{ height: "78%" }} /><i style={{ height: "66%" }} /><i style={{ height: "90%" }} />
+                <i style={{ height: "72%" }} /><i style={{ height: "84%" }} />
+              </div>
+            </div>
+            <span className="pj-app-note">Interactive preview · screens coming</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function Projects() {
   return (
@@ -12,38 +53,32 @@ export default function Projects() {
         <div className="projects">
           {projects.map((p) => (
             <article className="pj reveal" key={p.id}>
-              <div className="pj-media">
-                {p.video ? (
-                  <video className="pj-video" src={p.video} controls playsInline preload="metadata" />
-                ) : (
-                  <div className="pj-video pj-video-ph" role="img" aria-label={`${p.name} demo video, coming soon`}>
-                    <span className="pj-play" aria-hidden="true">▶</span>
-                    <span className="pj-video-cap">Demo video · coming soon</span>
-                  </div>
-                )}
-              </div>
-
-              <div className="pj-text">
+              <header className="pj-head">
                 <h3 className="pj-name">{p.name}</h3>
                 <p className="pj-tagline">{p.tagline}</p>
+              </header>
 
-                <div className="pj-part">
-                  <div className="pj-label">What inspired it</div>
-                  <p>{p.inspired}</p>
+              <InterfaceMock project={p} />
+
+              <div className="pj-story">
+                <div className="pj-col">
+                  <div className="pj-label">Inspiration</div>
+                  <p>{p.inspiration}</p>
                 </div>
-                <div className="pj-part">
-                  <div className="pj-label">The problem we explored</div>
+                <div className="pj-col">
+                  <div className="pj-label">Problem</div>
                   <p>{p.problem}</p>
                 </div>
-                <div className="pj-part">
-                  <div className="pj-label">How it's built</div>
-                  <ul className="pj-built">
-                    {p.built.map((b, i) => (
-                      <li key={i}>{renderInline(b)}</li>
-                    ))}
-                  </ul>
-                </div>
+              </div>
 
+              <div className="pj-solution">
+                <div className="pj-label">Solution</div>
+                {p.solutionLead && <p className="pj-sol-lead">{renderInline(p.solutionLead)}</p>}
+                <ul className="pj-built">
+                  {p.solution.map((b, i) => (
+                    <li key={i}>{renderInline(b)}</li>
+                  ))}
+                </ul>
                 {(p.tags || p.link) && (
                   <div className="pj-foot">
                     {p.tags && (
