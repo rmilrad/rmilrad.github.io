@@ -193,7 +193,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline
 
 /* BloqStake API terminal — the product was the API, so the API
    is the artwork */
-.term { background: #0e1622; border-radius: 16px; overflow: hidden; width: min(470px, 100%); margin-inline: auto; filter: drop-shadow(0 18px 32px rgba(20,20,18,0.22)); text-align: left; }
+.term { background: #0e1622; border-radius: 16px; overflow: hidden; width: min(470px, 100%); margin-inline: auto; text-align: left; }
 .term-bar { display: flex; align-items: center; gap: 6px; padding: 11px 14px; background: #121d2e; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
 .term-title { margin-left: 8px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #5c7189; }
