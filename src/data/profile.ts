@@ -142,20 +142,22 @@ export const articles: Article[] = [
   },
 ];
 
-/* --- side projects (case studies: inspiration, problem, solution) ---
-   `screens` are UI images composed into an interactive mock (added later);
-   text fields support **bold**. */
+/* --- side projects (long form case studies) ---
+   Each project page reads as a short blog post: a headline, a demo
+   video, then a sequence of sections. A section is a heading plus an
+   ordered list of blocks (paragraphs or bullet lists). All text
+   supports **bold**. House style: no hyphens in prose. */
+export type StoryBlock = { p: string } | { list: string[] };
+export type StorySection = { heading: string; blocks: StoryBlock[] };
 export type Project = {
   id: string;
-  name: string;
-  tagline: string;
+  name: string; // short label for nav + landing card
+  tagline: string; // one line description under the title
   video?: string; // demo video (mp4 under /videos)
   poster?: string; // video poster + landing thumbnail
   shot?: string; // landing screenshot (falls back to poster)
-  inspiration: string;
-  problem: string;
-  solutionLead?: string;
-  solution: string[];
+  storyTitle: string; // article headline on the project page
+  story: StorySection[];
   tags?: string[];
   link?: string;
 };
@@ -164,40 +166,101 @@ export const projects: Project[] = [
     id: "recall",
     name: "Recall",
     tagline: "A memory layer for AI chat that stops you paying for the same tokens twice.",
-    video: "/videos/recall.mp4",
+    video: "/videos/recall.mp4?v=2",
     poster: "/images/recall-poster.jpg",
-    inspiration:
-      "At Coinbase, I watched every engineering team independently build their own AI knowledge layers, redundant infrastructure solving the same retrieval problem. That experience made clear that the real cost of AI isn't the model, it's the architecture around it.",
-    problem:
-      "Every AI chat resends your entire conversation history with each message. Ten turns in, you're paying for the same tokens ten times over. Uber burned through their full 2026 AI budget in four months for exactly this reason.",
-    solutionLead:
-      "Recall is a memory layer for AI chat that eliminates redundant context and cuts API costs by up to **84%**.",
-    solution: [
-      "Stores and chunks conversations into a **RAG** pipeline, retrieving only what's relevant per turn.",
-      "Routes each query through three tiers by complexity: instant replay, cheap synthesis, or full frontier.",
-      "A real time dashboard with per query cost tracking, savings visualization, and model tuning.",
-      "**Python/FastAPI** backend, React frontend, deployed on **AWS** (ECS Fargate + EFS).",
-    ],
+    storyTitle: "Recall: Teaching AI to Remember",
     tags: ["Python", "FastAPI", "RAG", "React", "AWS"],
+    story: [
+      {
+        heading: "The spark",
+        blocks: [
+          { p: "At Coinbase, I watched every engineering team independently build their own AI knowledge layers, redundant retrieval pipelines solving the same problem. I built KBaaS to centralize that infrastructure, and query costs dropped by up to **280×**. The lesson was clear: the expensive part of AI isn't the model. It's what you send it." },
+          { p: "Recall is what happens when you apply that lesson to AI chat itself." },
+        ],
+      },
+      {
+        heading: "The problem",
+        blocks: [
+          { p: "Open any AI chat and send ten messages. By the tenth, the app has resent your entire conversation history nine extra times. Same tokens, reprocessed and rebilled every turn. Language models are stateless, they have no memory between calls, so every application compensates by stuffing the full history into each request." },
+          { p: "At enterprise scale, this is how Uber burned through their entire 2026 AI coding budget in four months. The problem isn't that AI is expensive. It's that AI is amnesic." },
+        ],
+      },
+      {
+        heading: "The decisions",
+        blocks: [
+          { p: "I chose to build a native app rather than a proxy so I could control the full routing loop, specifically which model answers each question, or whether a model needs to answer at all." },
+          { p: "The core design is a three tier router:" },
+          { list: [
+            "**Tier 0** · Question matches a previous Q&A pair. Replay the stored answer. Cost: **$0**.",
+            "**Tier 1** · Strong retrieved context. Use a cheaper model with only the relevant chunks, no history.",
+            "**Tier 2** · Novel question. Full frontier model with memory augmented prompt and recent turns.",
+          ] },
+          { p: "Every query logs its routing decision, actual cost, and a counterfactual, what it would have cost without the memory layer. The savings are never abstract; they're displayed per message, per conversation, and across the dashboard in real time." },
+        ],
+      },
+      {
+        heading: "How I built it",
+        blocks: [
+          { p: "I built the entire app using Claude Code as a full stack engineering partner, not autocomplete, but continuous sessions where it held the whole architecture in context and built vertically across backend, frontend, and infrastructure." },
+          { p: "Four milestones: chat parity with SSE streaming (M1), a **RAG** pipeline with hybrid vector and BM25 retrieval (M2), the three tier router and cost ledger (M3), and a real time analytics dashboard (M4)." },
+          { p: "The stack is **Python/FastAPI** with SQLite and sqlite-vec on the backend, React with Tailwind on the frontend, deployed on **AWS** (ECS Fargate + EFS) with a one command deploy script. A 1,000 conversation benchmark showed up to **84%** cost savings." },
+        ],
+      },
+      {
+        heading: "The solution",
+        blocks: [
+          { p: "Recall is a memory layer for AI chat. It stores every conversation into a searchable knowledge base and uses that context to answer future questions cheaper, or free. The more you use it, the more it remembers, and the more queries it can answer without a full model call." },
+        ],
+      },
+    ],
   },
   {
     id: "rwa-vault",
     name: "Tokenized Yield Vault",
     tagline: "An institutional grade tokenized fund that honors redemptions even when the cash isn't in the vault.",
-    video: "/videos/rwa-vault.mp4",
+    video: "/videos/rwa-vault.mp4?v=2",
     poster: "/images/rwa-vault-poster.jpg",
-    inspiration:
-      "Tokenized real world assets are moving from thesis to product, with neobanks and asset managers wrapping yield bearing instruments like Treasuries into onchain share classes. I wanted to build the institutional grade version of that myself, not just read about it.",
-    problem:
-      "A tokenized fund promises instant, retail friendly access, yet its assets are actually deployed and not always liquid, and its holders must be permissioned. The core question: how do you honor redemptions and keep the accounting provably honest when the cash isn't always sitting in the vault?",
-    solution: [
-      "A permissioned **ERC-4626** vault in Solidity, developed test first in **Foundry**.",
-      "A liquidity buffer settles small redemptions instantly, while larger ones book as slow claims at locked NAV.",
-      "A React dashboard on **wagmi/viem** drives the vault live.",
-      "An independent off chain indexer reconciles a mirror ledger against onchain reads, catching any drift to the wei.",
-      "Deployed to the **Base Sepolia** testnet.",
-    ],
+    storyTitle: "Building a Tokenized Yield Vault That Can Prove Its Own Books",
     tags: ["Solidity", "Foundry", "ERC-4626", "React", "Base"],
+    story: [
+      {
+        heading: "The inspiration",
+        blocks: [
+          { p: "Tokenized real world assets are moving from thesis to product. Neobanks and asset managers are racing to wrap yield bearing instruments like Treasuries into onchain share classes that anyone can hold. I didn't want to read another explainer about it, I wanted to build the institutional grade version myself and feel where the hard parts actually are." },
+        ],
+      },
+      {
+        heading: "The problem",
+        blocks: [
+          { p: "A tokenized fund makes a promise that's quietly in tension with itself: instant, retail friendly access to a product whose assets are actually deployed and not sitting in cash. Layer on the requirement that holders be permissioned, and the real question emerges. How do you honor redemptions, and keep the accounting provably honest, when the money isn't always in the vault?" },
+        ],
+      },
+      {
+        heading: "The decisions",
+        blocks: [
+          { p: "I built on **ERC-4626** so the vault speaks a standard the ecosystem already understands, then designed around its known traps. A few choices shaped everything:" },
+          { list: [
+            "Put authorization at a single chokepoint on the value moving path, so there is one place to reason about who can do what.",
+            "Split liquidity into an instantly redeemable buffer and everything else. Redemptions inside the buffer settle now; larger ones book a slow claim at NAV locked at request time, so later gains or losses don't move a price someone already accepted.",
+            "Derive total assets from real balances and strategy positions rather than internal counters, so money that arrives out of band can't quietly desync the books.",
+            "Make correctness checkable by something that shares no code with the vault.",
+          ] },
+        ],
+      },
+      {
+        heading: "How I built it",
+        blocks: [
+          { p: "The whole thing was built test first, in disciplined vertical slices. Each phase opened as failing **Foundry** tests describing the behavior, deposit and mint, then withdraw and redeem, then permissioning, then the buffer and slow redemptions, then reconciliation, and only went green once the behavior and its edge cases held: rounding direction, the first depositor inflation attack, frozen actors, out of band deposits." },
+          { p: "A React dashboard on **wagmi/viem** stayed live from the first phase and grew with each one, so every capability was something I could actually drive, not just a passing test. Alongside it, an off chain indexer folds the vault's events into a mirror ledger and diffs it against live onchain reads to the wei. Because it is a genuinely different code path, it catches drift instead of agreeing with the same bug." },
+        ],
+      },
+      {
+        heading: "The solution",
+        blocks: [
+          { p: "The result is a permissioned **ERC-4626** vault on **Base Sepolia** with a real liquidity model, a dashboard that surfaces NAV, the split between buffer and deployed treasury, and the pending redemption liability, and an independent reconciler watching the books." },
+        ],
+      },
+    ],
   },
 ];
 

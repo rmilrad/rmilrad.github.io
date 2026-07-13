@@ -24,7 +24,7 @@ export default function ProjectPage({ id }: { id: string }) {
         <a className="pp-back" href="#projects">← Back to projects</a>
         <header className="pp-head">
           <div className="kicker">Project</div>
-          <h1 className="pp-name">{p.name}</h1>
+          <h1 className="pp-name">{p.storyTitle}</h1>
           <p className="pp-tagline">{p.tagline}</p>
           {(p.tags || p.link) && (
             <div className="pp-meta">
@@ -39,7 +39,18 @@ export default function ProjectPage({ id }: { id: string }) {
         <div className="pp-stage">
           <div className="wrap">
             <div className="pp-video-wrap">
-              <video className="pp-video" controls playsInline preload="metadata" poster={p.poster}>
+              <video
+                className="pp-video"
+                ref={(el) => { if (el) el.playbackRate = 2; }}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                poster={p.poster}
+                onLoadedMetadata={(e) => { e.currentTarget.playbackRate = 2; }}
+                onRateChange={(e) => { if (e.currentTarget.playbackRate !== 2) e.currentTarget.playbackRate = 2; }}
+              >
                 <source src={p.video} type="video/mp4" />
               </video>
             </div>
@@ -48,23 +59,22 @@ export default function ProjectPage({ id }: { id: string }) {
       )}
 
       <div className="wrap">
-        <div className="pp-writeup">
-          <div className="pp-part">
-            <div className="pj-label">Inspiration</div>
-            <p>{p.inspiration}</p>
-          </div>
-          <div className="pp-part">
-            <div className="pj-label">Problem</div>
-            <p>{p.problem}</p>
-          </div>
-          <div className="pp-part pp-part-sol">
-            <div className="pj-label">Solution</div>
-            {p.solutionLead && <p className="pp-sol-lead">{renderInline(p.solutionLead)}</p>}
-            <ul className="pj-built">
-              {p.solution.map((b, i) => <li key={i}>{renderInline(b)}</li>)}
-            </ul>
-          </div>
-        </div>
+        <article className="pp-story">
+          {p.story.map((sec, si) => (
+            <section className="pp-sec" key={si}>
+              <h2 className="pp-h">{sec.heading}</h2>
+              {sec.blocks.map((b, bi) =>
+                "list" in b ? (
+                  <ul className="pp-ul" key={bi}>
+                    {b.list.map((li, i) => <li key={i}>{renderInline(li)}</li>)}
+                  </ul>
+                ) : (
+                  <p key={bi}>{renderInline(b.p)}</p>
+                ),
+              )}
+            </section>
+          ))}
+        </article>
       </div>
     </main>
   );
