@@ -69,6 +69,19 @@ const TERM_TOKENS: { t: string; c?: string }[] = [
 ];
 const TERM_TOTAL = TERM_TOKENS.reduce((n, tok) => n + tok.t.length, 0);
 
+/* Render the first `count` characters across the colored tokens.
+   Pass TERM_TOTAL for the full (ghost) copy that reserves the box size. */
+function renderTokens(count: number) {
+  let used = 0;
+  return TERM_TOKENS.map((tok, i) => {
+    const remaining = count - used;
+    used += tok.t.length;
+    if (remaining <= 0) return null;
+    const text = remaining >= tok.t.length ? tok.t : tok.t.slice(0, remaining);
+    return tok.c ? <span className={tok.c} key={i}>{text}</span> : <span key={i}>{text}</span>;
+  });
+}
+
 function BloqTerminal() {
   const [typed, setTyped] = useState(0);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -97,15 +110,6 @@ function BloqTerminal() {
     return () => { io.disconnect(); cancelAnimationFrame(raf); };
   }, []);
 
-  let used = 0;
-  const visible = TERM_TOKENS.map((tok, i) => {
-    const remaining = typed - used;
-    used += tok.t.length;
-    if (remaining <= 0) return null;
-    const text = remaining >= tok.t.length ? tok.t : tok.t.slice(0, remaining);
-    return tok.c ? <span className={tok.c} key={i}>{text}</span> : <span key={i}>{text}</span>;
-  });
-
   return (
     <div className="term" ref={ref} role="img" aria-label="BloqStake API example: one call creates an Ethereum validator and stakes 32 ETH">
       <div className="term-bar">
@@ -115,11 +119,55 @@ function BloqTerminal() {
         <span className="term-title">bloqstake · api</span>
       </div>
       <pre className="term-body">
-        <code>
-          {visible}
+        {/* ghost copy reserves the final size so typing never reflows the box */}
+        <code className="term-ghost" aria-hidden="true">{renderTokens(TERM_TOTAL)}</code>
+        <code className="term-live">
+          {renderTokens(typed)}
           <span className="term-cursor" />
         </code>
       </pre>
+    </div>
+  );
+}
+
+/* Hemi Tunnel scene: the transaction history sits behind a scrim, and
+   as the box scrolls up through the viewport the Review Deposit drawer
+   slides in from the right while the screen behind it dims. Driven by
+   a single --p (0..1) progress variable the CSS reads. */
+function HemiScene() {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) { el.style.setProperty("--p", "1"); return; }
+    let raf = 0;
+    const compute = () => {
+      raf = 0;
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const start = vh * 0.82; // drawer starts opening when the scene enters here
+      const end = vh * 0.36; // fully open by here
+      const p = Math.max(0, Math.min(1, (start - r.top) / (start - end)));
+      el.style.setProperty("--p", p.toFixed(3));
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(compute); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    compute();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  return (
+    <div className="hemi-scene" ref={ref} role="img" aria-label="The Hemi Tunnel: transaction history and a confirmed cross chain deposit">
+      <img className="hemi-base" src="/images/hemi-txns.png" alt="" />
+      <span className="hemi-scrim" aria-hidden="true" />
+      <img className="hemi-panel" src="/images/hemi-deposit.png" alt="" />
     </div>
   );
 }
@@ -182,6 +230,8 @@ function JobCard({ job }: { job: Job }) {
         <img className="tn-shot" src={job.media.src} alt={job.media.alt} />
       ) : job.media.kind === "code" ? (
         <BloqTerminal />
+      ) : job.media.kind === "scene" ? (
+        <HemiScene />
       ) : (
         <div className="art-blank" aria-hidden="true" />
       )}

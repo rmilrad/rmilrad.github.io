@@ -34,6 +34,7 @@ export type Job = {
     | { kind: "rows"; rows: JobRow[] }
     | { kind: "image"; src: string; alt: string }
     | { kind: "code" } // the BloqStake API terminal, rendered in Work.tsx
+    | { kind: "scene" } // the Hemi Tunnel scroll scene, rendered in Work.tsx
     | { kind: "blank" } // reserved space, visual to come
     | null;
   bullets?: string[]; // markdown lite: **bold**
@@ -66,7 +67,7 @@ export const jobs: Job[] = [
     body:
       "A modular Layer 2 protocol bringing Bitcoin security and programmability to DeFi. I owned end to end product strategy, from UI and UX through the liquidity that followed.",
     role: "Senior Product Manager · Aug 2023 to May 2025",
-    media: { kind: "image", src: "/images/hemi-app.png", alt: "The Hemi Tunnel app: transaction history and a confirmed deposit" },
+    media: { kind: "scene" },
     bullets: [
       "Directed the UI and UX for consumer applications, driving acquisition **0 to 200K+** in six months.",
       "Attracted **$1B** in liquidity across **60+** partner integrations.",
