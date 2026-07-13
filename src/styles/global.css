@@ -149,7 +149,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline
 .bx-kick { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
 .bx h3 { font-weight: 500; letter-spacing: -0.025em; font-size: clamp(24px, 2.9vw, 33px); line-height: 1.1; margin: 0 0 14px; color: var(--bx-hd); text-wrap: balance; }
 .bx-body { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--bx-tx); max-width: 46ch; }
-.bx-body strong { color: var(--ink); font-weight: 600; }
+.bx-body strong { color: inherit; font-weight: 600; }
 .bx-role { margin: 14px 0 0; font-size: 13px; color: rgba(20,20,18,0.45); }
 .bx-cta { margin-top: 22px; display: inline-flex; align-items: center; gap: 8px; font: inherit; font-size: 14px; font-weight: 500; cursor: pointer; color: var(--bx-hd); background: #fff; border: none; border-radius: var(--r-pill); padding: 11px 19px; box-shadow: 0 1px 2px rgba(20,20,18,0.08); transition: box-shadow .2s var(--ease), transform .2s var(--ease); }
 .bx-cta:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
@@ -173,14 +173,23 @@ a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline
    descend from the top into its place; box height stays constant */
 .bx-art { position: relative; will-change: transform; }
 .art-stage { position: relative; }
-.art-media { transition: transform .55s var(--ease); }
-.bx.open .art-media { transform: translateY(118%); }
-.art-detail { position: absolute; inset: 0; display: flex; align-items: center; overflow-y: auto; transform: translateY(-130%); opacity: 0; visibility: hidden; transition: transform .55s var(--ease), opacity .35s var(--ease), visibility 0s .55s; }
-.bx.open .art-detail { transform: translateY(0); opacity: 1; visibility: visible; transition: transform .55s var(--ease), opacity .35s var(--ease), visibility 0s 0s; }
+/* expand/collapse with no inner scroll: the media collapses to nothing
+   while the bullets grow to their natural height, so the box always
+   fits the content cleanly */
+.art-fold { display: grid; transition: grid-template-rows .5s var(--ease); }
+.art-fold > .art-fold-in { overflow: hidden; min-height: 0; }
+.art-fold-media { grid-template-rows: 1fr; }
+.art-fold-media > .art-fold-in { transition: opacity .3s var(--ease); }
+.bx.open .art-fold-media { grid-template-rows: 0fr; }
+.bx.open .art-fold-media > .art-fold-in { opacity: 0; }
+.art-fold-detail { grid-template-rows: 0fr; }
+.art-fold-detail > .art-fold-in { opacity: 0; transition: opacity .4s var(--ease) .1s; }
+.bx.open .art-fold-detail { grid-template-rows: 1fr; }
+.bx.open .art-fold-detail > .art-fold-in { opacity: 1; }
 .bx-more { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; width: 100%; }
 .bx-more li { position: relative; padding-left: 18px; font-size: 14px; line-height: 1.5; color: var(--bx-tx); }
 .bx-more li::before { content: ""; position: absolute; left: 2px; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--bx-hd); }
-.bx-more strong { color: var(--ink); font-weight: 600; }
+.bx-more strong { color: inherit; font-weight: 600; }
 
 /* BloqStake API terminal — the product was the API, so the API
    is the artwork */

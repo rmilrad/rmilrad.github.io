@@ -273,14 +273,16 @@ function JobCard({ job }: { job: Job }) {
           <div className="bx-art" data-plx={job.plx}>
             {job.media ? (
               <div className="art-stage">
-                {media}
+                <div className="art-fold art-fold-media"><div className="art-fold-in">{media}</div></div>
                 {job.bullets && (
-                  <div className="art-detail" id={`d-${job.id}`}>
-                    <ul className="bx-more">
-                      {job.bullets.map((b, i) => (
-                        <li key={i}>{renderInline(b)}</li>
-                      ))}
-                    </ul>
+                  <div className="art-fold art-fold-detail" id={`d-${job.id}`}>
+                    <div className="art-fold-in">
+                      <ul className="bx-more">
+                        {job.bullets.map((b, i) => (
+                          <li key={i}>{renderInline(b)}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 )}
               </div>
