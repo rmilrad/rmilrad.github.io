@@ -172,6 +172,126 @@ function HemiScene() {
   );
 }
 
+/* In house asset marks for the Coinbase parallax grid. Drawn inline
+   so the scene carries no external assets. */
+const MARK_ETH = (
+  <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+    <circle cx="16" cy="16" r="16" fill="#627eea" />
+    <g fill="#fff">
+      <path d="M16 4.5v8.87l7.5 3.35z" fillOpacity=".6" />
+      <path d="M16 4.5 8.5 16.72 16 13.37z" />
+      <path d="M16 22.24v6.26l7.5-10.38z" fillOpacity=".6" />
+      <path d="M16 28.5v-6.27l-7.5-4.11z" />
+      <path d="m16 20.85 7.5-4.13L16 13.38z" fillOpacity=".2" />
+      <path d="m8.5 16.72 7.5 4.13v-7.47z" fillOpacity=".6" />
+    </g>
+  </svg>
+);
+const MARK_SOL = (
+  <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+    <circle cx="16" cy="16" r="16" fill="#12141c" />
+    <defs>
+      <linearGradient id="cbsol" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stopColor="#9945ff" /><stop offset="1" stopColor="#14f195" />
+      </linearGradient>
+    </defs>
+    <g fill="url(#cbsol)">
+      <path d="M9 10.4h12l-2 2H7z" /><path d="M9 15h12l-2 2H7z" /><path d="M9 19.6h12l-2 2H7z" />
+    </g>
+  </svg>
+);
+const MARK_ADA = (
+  <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+    <circle cx="16" cy="16" r="16" fill="#0033ad" />
+    <g fill="#fff">
+      <circle cx="16" cy="9.4" r="1.7" /><circle cx="16" cy="22.6" r="1.7" /><circle cx="16" cy="16" r="2.1" />
+      <circle cx="10.5" cy="12.7" r="1.4" /><circle cx="21.5" cy="12.7" r="1.4" />
+      <circle cx="10.5" cy="19.3" r="1.4" /><circle cx="21.5" cy="19.3" r="1.4" />
+    </g>
+  </svg>
+);
+const MARK_AVAX = (
+  <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+    <circle cx="16" cy="16" r="16" fill="#e84142" />
+    <path d="M15.85 8.4c.09-.15.31-.15.4 0l3.1 5.45c.06.11.06.24 0 .35l-1.16 2.02c-.09.15-.31.15-.4 0l-1.8-3.16c-.06-.1-.2-.1-.26 0l-3.63 6.35a.23.23 0 0 1-.2.11H9.5a.23.23 0 0 1-.2-.35z" fill="#fff" />
+    <path d="M18.75 17.9c.09-.15.31-.15.4 0l1.55 2.71a.23.23 0 0 1-.2.35h-3.1a.23.23 0 0 1-.2-.35z" fill="#fff" />
+  </svg>
+);
+
+/* Coinbase asset grid: floating cards on a dark panel with soft glows.
+   Each layer drifts opposite the cursor (and on scroll) by its own depth
+   for a 3D feel. Everything is clipped inside the panel. */
+function CoinbaseAssets() {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    let raf = 0, tx = 0, ty = 0, cx = 0, cy = 0;
+    const loop = () => {
+      cx += (tx - cx) * 0.09;
+      cy += (ty - cy) * 0.09;
+      el.style.setProperty("--mx", cx.toFixed(3));
+      el.style.setProperty("--my", cy.toFixed(3));
+      raf = Math.abs(tx - cx) > 0.002 || Math.abs(ty - cy) > 0.002 ? requestAnimationFrame(loop) : 0;
+    };
+    const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
+    const onMove = (e: MouseEvent) => {
+      const r = el.getBoundingClientRect();
+      if (!r.width) return;
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      kick();
+    };
+    const onLeave = () => { tx = 0; ty = 0; kick(); };
+    const onScroll = () => {
+      const r = el.getBoundingClientRect();
+      const sy = ((r.top + r.height / 2) / window.innerHeight - 0.5) * 2;
+      el.style.setProperty("--sy", Math.max(-1, Math.min(1, sy)).toFixed(3));
+    };
+    el.addEventListener("mousemove", onMove);
+    el.addEventListener("mouseleave", onLeave);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => {
+      el.removeEventListener("mousemove", onMove);
+      el.removeEventListener("mouseleave", onLeave);
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  return (
+    <div className="cb-scene" ref={ref} role="img" aria-label="Coinbase staking across major proof of stake assets">
+      <span className="cb-glow cb-glow-a" style={{ "--d": 6 } as CSSProperties} />
+      <span className="cb-glow cb-glow-b" style={{ "--d": 5 } as CSSProperties} />
+
+      <div className="cb-card cb-faded" style={{ "--d": 7, left: "33%", top: "48%" } as CSSProperties}>
+        <span className="cb-name">Cosmos</span>
+      </div>
+      <div className="cb-card" style={{ "--d": 15, left: "3%", top: "36%" } as CSSProperties}>
+        <span className="cb-mark">{MARK_SOL}</span>
+        <span className="cb-name">Solana</span>
+      </div>
+      <div className="cb-card" style={{ "--d": 11, left: "60%", top: "28%" } as CSSProperties}>
+        <span className="cb-mark">{MARK_ADA}</span>
+        <span className="cb-name">Cardano</span>
+      </div>
+      <div className="cb-card cb-front" style={{ "--d": 24, left: "29%", top: "2%" } as CSSProperties}>
+        <span className="cb-mark">{MARK_ETH}</span>
+        <span className="cb-tag">Staking enabled</span>
+        <span className="cb-name">Ethereum</span>
+      </div>
+      <div className="cb-card cb-front" style={{ "--d": 28, left: "44%", top: "56%" } as CSSProperties}>
+        <span className="cb-mark">{MARK_AVAX}</span>
+        <span className="cb-name">Avalanche</span>
+      </div>
+    </div>
+  );
+}
+
 function JobCard({ job }: { job: Job }) {
   const [open, setOpen] = useState(false);
   const [seen, setSeen] = useState(false); // reveal in
@@ -232,6 +352,8 @@ function JobCard({ job }: { job: Job }) {
         <BloqTerminal />
       ) : job.media.kind === "scene" ? (
         <HemiScene />
+      ) : job.media.kind === "assets" ? (
+        <CoinbaseAssets />
       ) : (
         <div className="art-blank" aria-hidden="true" />
       )}

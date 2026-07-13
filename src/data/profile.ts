@@ -35,6 +35,7 @@ export type Job = {
     | { kind: "image"; src: string; alt: string }
     | { kind: "code" } // the BloqStake API terminal, rendered in Work.tsx
     | { kind: "scene" } // the Hemi Tunnel scroll scene, rendered in Work.tsx
+    | { kind: "assets" } // the Coinbase parallax asset grid, rendered in Work.tsx
     | { kind: "blank" } // reserved space, visual to come
     | null;
   bullets?: string[]; // markdown lite: **bold**
@@ -50,7 +51,7 @@ export const jobs: Job[] = [
     body:
       "I supported the institutional ETFs moving billions through Coinbase, architected the infrastructure that segregates MiCA regulated funds for international users, and shipped the AI tooling that made engineering faster.",
     role: "Product Manager · May 2025 to May 2026",
-    media: { kind: "blank" },
+    media: { kind: "assets" },
     bullets: [
       "Facilitated **$4.5B** in institutional ETF funds flow through third party integrations.",
       "Led compliance and reconciliation for **1.3M** users, protecting a **$1B** market and **$120M** in revenue.",
