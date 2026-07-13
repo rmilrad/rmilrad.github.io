@@ -232,13 +232,17 @@ a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline
 /* Coinbase parallax asset grid: floating cards drift opposite the
    cursor and on scroll, each by its own --d depth, clipped in the panel */
 .cb-scene { position: relative; width: 100%; height: clamp(300px, 32vw, 348px); }
-.cb-card { position: absolute; width: clamp(120px, 37%, 148px); aspect-ratio: 1 / 1.03; padding: 14px 16px; border-radius: 18px; display: flex; flex-direction: column; background: linear-gradient(158deg, #2a3246, #171d2b); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 28px rgba(20,20,18,0.22), 0 4px 9px rgba(20,20,18,0.14); will-change: transform; transform: translate3d(calc(var(--mx,0) * var(--d) * -1px), calc((var(--my,0) + var(--sy,0) * 0.4) * var(--d) * -1px), 0); }
-.cb-mark svg { display: block; }
+.cb-card { position: absolute; width: clamp(112px, 36%, 150px); aspect-ratio: 1 / 1.03; padding: 14px 16px; border-radius: 18px; display: flex; flex-direction: column; background: linear-gradient(158deg, #2a3246, #171d2b); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 28px rgba(20,20,18,0.22), 0 4px 9px rgba(20,20,18,0.14); will-change: transform; transform: translate3d(calc(var(--mx,0) * var(--d) * -1px), calc((var(--my,0) + var(--sy,0) * 0.4) * var(--d) * -1px), 0); }
+.cb-mark img, .cb-mark svg { display: block; width: 30px; height: 30px; }
 .cb-tag { margin-top: auto; font-size: 11px; color: rgba(255,255,255,0.5); }
 .cb-name { margin-top: auto; font-size: clamp(17px, 2.1vw, 22px); font-weight: 500; letter-spacing: -0.02em; color: #fff; }
 .cb-tag + .cb-name { margin-top: 3px; }
 .cb-front { z-index: 3; }
-@media (max-width: 820px) { .cb-scene { height: clamp(280px, 62vw, 340px); } }
+.cb-top { z-index: 5; }
+@media (max-width: 820px) {
+  .cb-scene { height: clamp(300px, 74vw, 356px); }
+  .cb-card { width: clamp(94px, 32%, 130px); box-shadow: 0 12px 22px rgba(20,20,18,0.2), 0 3px 7px rgba(20,20,18,0.12); }
+}
 @media (prefers-reduced-motion: reduce) { .cb-card { transform: none; } }
 
 /* reserved visual space (blank for now) */
