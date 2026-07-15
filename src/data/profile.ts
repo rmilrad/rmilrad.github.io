@@ -272,7 +272,7 @@ export const quotes: Quote[] = [
     name: "Isabella Fachini de Araujo", title: "Product Lead, Coinbase · managed Ryan directly",
   },
   {
-    text: "“He was the most AI fluent PM at Coinbase. He shared his recipes with the entire PM team through his ‘How I AI’ doc, a very concrete and practical way to build your own routines, skills, context, and memory.”",
+    text: "“Ryan is a super strong PM and exactly the kind of person you want to work with. The staking domain he landed in at Coinbase is highly complex, and he jumped into that very technical space head on and became the SME in his area after a few months.”",
     name: "Nicolas M.", title: "Coinbase · worked on the same team",
   },
   {
@@ -280,12 +280,16 @@ export const quotes: Quote[] = [
     name: "Karen Wang", title: "Staff Software Engineer, Coinbase · same team",
   },
   {
+    text: "“Rather than treating AI as a buzzword, he found real use cases where it could save time, improve output, and make day to day work better.”",
+    name: "Reza Sabernia", title: "Product, Web3 and Crypto · senior colleague at Coinbase",
+  },
+  {
     text: "“He brought strong product judgment and deep technical intuition to difficult cross functional problems, consistently driving clarity and execution.”",
     name: "Lukas Staniszewski", title: "Director of Product, Coinbase · managed Ryan directly",
   },
   {
-    text: "“Rather than treating AI as a buzzword, he found real use cases where it could save time, improve output, and make day to day work better.”",
-    name: "Reza Sabernia", title: "Product, Web3 and Crypto · senior colleague at Coinbase",
+    text: "“He was the most AI fluent PM at Coinbase. He shared his recipes with the entire PM team through his ‘How I AI’ doc, a very concrete and practical way to build your own routines, skills, context, and memory.”",
+    name: "Nicolas M.", title: "Coinbase · worked on the same team",
   },
   {
     text: "“He is a world class executor who brings long term strategic thinking to his decisions. Any team would be lucky to have Ryan as a team member, partner, and leader.”",
@@ -294,6 +298,10 @@ export const quotes: Quote[] = [
   {
     text: "“When the team hit a gnarly infrastructure migration with real customer impact on the line, he got into the weeds, worked through the technical tradeoffs, and got legal, finance, and eng all pointed in the same direction.”",
     name: "Karen Wang", title: "Staff Software Engineer, Coinbase · same team",
+  },
+  {
+    text: "“The thing that stands out most to me: he is simply the kind of person you enjoy working with. Fun, smart, clear, and kind.”",
+    name: "Nicolas M.", title: "Coinbase · worked on the same team",
   },
   {
     text: "“I'm confident he'll make a strong impact wherever he goes next.”",
