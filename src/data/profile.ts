@@ -272,6 +272,10 @@ export const quotes: Quote[] = [
     name: "Isabella Fachini de Araujo", title: "Product Lead, Coinbase · managed Ryan directly",
   },
   {
+    text: "“He was the most AI fluent PM at Coinbase. He shared his recipes with the entire PM team through his ‘How I AI’ doc, a very concrete and practical way to build your own routines, skills, context, and memory.”",
+    name: "Nicolas M.", title: "Coinbase · worked on the same team",
+  },
+  {
     text: "“Ryan thinks like an engineer. He can zoom into the technical details and zoom out to the product strategy with equal fluency. That combination is genuinely rare.”",
     name: "Karen Wang", title: "Staff Software Engineer, Coinbase · same team",
   },
