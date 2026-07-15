@@ -273,7 +273,7 @@ export const quotes: Quote[] = [
   },
   {
     text: "“Ryan is a super strong PM and exactly the kind of person you want to work with. The staking domain he landed in at Coinbase is highly complex, and he jumped into that very technical space head on and became the SME in his area after a few months.”",
-    name: "Nicolas M.", title: "Coinbase · worked on the same team",
+    name: "Nicolas M.", title: "Group Technical Program Manager, Coinbase · same team",
   },
   {
     text: "“Ryan thinks like an engineer. He can zoom into the technical details and zoom out to the product strategy with equal fluency. That combination is genuinely rare.”",
@@ -289,7 +289,7 @@ export const quotes: Quote[] = [
   },
   {
     text: "“He was the most AI fluent PM at Coinbase. He shared his recipes with the entire PM team through his ‘How I AI’ doc, a very concrete and practical way to build your own routines, skills, context, and memory.”",
-    name: "Nicolas M.", title: "Coinbase · worked on the same team",
+    name: "Nicolas M.", title: "Group Technical Program Manager, Coinbase · same team",
   },
   {
     text: "“He is a world class executor who brings long term strategic thinking to his decisions. Any team would be lucky to have Ryan as a team member, partner, and leader.”",
@@ -301,7 +301,7 @@ export const quotes: Quote[] = [
   },
   {
     text: "“The thing that stands out most to me: he is simply the kind of person you enjoy working with. Fun, smart, clear, and kind.”",
-    name: "Nicolas M.", title: "Coinbase · worked on the same team",
+    name: "Nicolas M.", title: "Group Technical Program Manager, Coinbase · same team",
   },
   {
     text: "“I'm confident he'll make a strong impact wherever he goes next.”",
