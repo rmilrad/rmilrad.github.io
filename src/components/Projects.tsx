@@ -5,8 +5,8 @@ export default function Projects() {
     <section className="section tintband" id="projects">
       <div className="wrap">
         <div className="kicker reveal">Projects</div>
-        <h2 className="reveal">Things I'm building.</h2>
-        <p className="lede reveal">Engineering experiments where I build the institutional grade version myself, not just read about it. Open one for the demo.</p>
+        <h2 className="reveal">Independent product development.</h2>
+        <p className="lede reveal">I build the institutional grade version myself, solo and end to end, not just read about it. Open one for the demo.</p>
 
         <div className="pjc-grid reveal">
           {projects.map((p) => (

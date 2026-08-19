@@ -22,7 +22,7 @@ type Entry = { k: string[]; a: string };
 const KB: Entry[] = [
   {
     k: ["who are", "yourself", "summary", "bio", "background", "introduce"],
-    a: "I'm Ryan, a product manager with **6+ years** across crypto infrastructure, payments, and fintech.\n\nBefore tech I was a professional chef. Then a computer science degree, then years living and working abroad, where I learned Spanish to fluency, which is how I met my wife. That path shows in how I work: calm under pressure, sharp communication, and an engineer's curiosity.\n\nMost recently at Coinbase I owned the core staking platform, the orchestration service moving customer funds from off chain to on chain across **8 assets**.",
+    a: "I'm Ryan, a senior product manager with **five years** across crypto infrastructure, money movement, and fintech.\n\nBefore tech I was a professional chef. Then a computer science degree, then years living and working abroad, where I learned Spanish to fluency, which is how I met my wife. That path shows in how I work: calm under pressure, sharp communication, and an engineer's curiosity.\n\nMost recently at Coinbase I owned the core staking platform, the orchestration service moving customer funds from off chain to on chain across **8 assets**.",
   },
   {
     k: ["last role", "current", "recent", "latest", "coinbase", "most recent", "staking"],
@@ -30,7 +30,7 @@ const KB: Entry[] = [
   },
   {
     k: ["metric", "impact", "number", "result", "achievement", "impactful", "proud", "top"],
-    a: "The numbers I'm proudest of:\n- **$15B** in assets migrated to new key management infrastructure\n- **$4.5B** in ETF funds flow, **$1B** of it in one launch's first 24 hours\n- **$24M** in live funds migrated in a single day by reframing a 16 week build\n- **$1B+** liquidity attracted to Hemi across **60+** integrations\n- **$180M** in at risk funds surfaced and recovered\n- **62%** faster integrations with an agentic MCP, **75%** with an LLM runbook\n- **0 to 200K+** users on Hemi's consumer apps",
+    a: "The numbers I'm proudest of:\n- **$15B** in assets migrated to new key management infrastructure\n- **$4.5B** in ETF funds flow, **$1B** of it in one launch's first 24 hours\n- **$24M** in live funds migrated in a single day by reframing a 16 week build\n- **$1B+** liquidity attracted to Hemi across **60+** integrations\n- **$180M** in at risk funds surfaced and recovered\n- **62%** faster integrations with an agentic MCP, **75%** with an LLM runbook\n- **0 to 100K+** users on Hemi's user facing apps",
   },
   {
     k: ["compan", "where", "worked", "history", "experience", "career"],
@@ -58,11 +58,11 @@ const KB: Entry[] = [
   },
   {
     k: ["hemi", "bridge", "tunnel", "l2", "launch", "liquidity", "cross chain", "wallet", "tvl"],
-    a: "At **Hemi**, a Bitcoin L2, I grew from PM to Senior PM owning the consumer surface and the bridge:\n- Drove **0 to 200K+** active accounts in six months\n- Led the cross chain bridge end to end: **$500M** facilitated in 2 weeks, **$1B+ TVL** within 3 months\n- The network launch attracted **$1B** in liquidity in 4 weeks across **60+** DeFi integrations\n- Lifted participation from **73% to 95%** with a proof of personhood app",
+    a: "At **Hemi**, a Bitcoin L2, I grew from PM to Senior PM owning the user facing surface and the bridge:\n- Drove **0 to 100K+** active accounts in six months\n- Led the cross chain bridge end to end: **$500M** facilitated in 2 weeks, **$1B+ TVL** within 3 months\n- The network launch attracted **$1B** in liquidity in 4 weeks across **60+** DeFi integrations\n- Lifted participation from **73% to 95%** with a proof of personhood app",
   },
   {
     k: ["miner", "pop", "wasm", "funnel", "drop off", "declin", "data story"],
-    a: "My favorite data story: a first of its kind consumer mining app, **2,000** daily users, participation declining **5%** week over week with no clear cause.\n\nCommunity feedback generated the hypotheses; funnel data told me which ones mattered. We shipped three fixes: wallet balance visibility, session reuse, and a clear path to starting funds. The decline reversed and the app peaked at **100K** unique miners, at one point **93%** of Bitcoin testnet3 traffic.\n\nFeedback tells you what hurts. Data tells you whether it matters.",
+    a: "My favorite data story: a first of its kind mining app, **2,000** daily users, participation declining **5%** week over week with no clear cause.\n\nCommunity feedback generated the hypotheses; funnel data told me which ones mattered. We shipped three fixes: wallet balance visibility, session reuse, and a clear path to starting funds. The decline reversed and the app peaked at **100K** unique miners, at one point **93%** of Bitcoin testnet3 traffic.\n\nFeedback tells you what hurts. Data tells you whether it matters.",
   },
   {
     k: ["sybil", "bot", "verification", "personhood", "demos", "integrity", "wau"],

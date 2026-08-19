@@ -6,7 +6,7 @@
 
 export const profile = {
   name: "Ryan Milrad",
-  role: "Product Manager",
+  role: "Senior Product Manager",
   email: "ryanmilrad34@gmail.com",
   linkedin: "https://linkedin.com/in/ryan-milrad",
   github: "https://github.com/rmilrad",
@@ -18,7 +18,7 @@ export type Stat = { label: string; value: string; green?: boolean };
 export const stats: Stat[] = [
   { label: "Assets managed and secured", value: "$20B+" },
   { label: "Liquidity attracted to Hemi", value: "$1B+" },
-  { label: "Users protected under MiCA", value: "1M+" },
+  { label: "Users protected under MiCA", value: "1.3M" },
   { label: "Faster engineering integrations", value: "62%", green: true },
 ];
 
@@ -64,13 +64,13 @@ export const jobs: Job[] = [
   {
     id: "hemi",
     colors: { bg: "#fdeee5", hd: "#c2410c", tx: "#96522f", rows: "#f7e0d2", mk: "#ff5d22" },
-    headline: "Zero to 200K+ users on a new L2.",
+    headline: "Zero to 100K+ users on a new L2.",
     body:
       "A modular Layer 2 protocol bringing Bitcoin security and programmability to DeFi. I owned end to end product strategy, from UI and UX through the liquidity that followed.",
     role: "Senior Product Manager · Aug 2023 to May 2025",
     media: { kind: "scene" },
     bullets: [
-      "Directed the UI and UX for consumer applications, driving acquisition **0 to 200K+** in six months.",
+      "Directed the UI and UX for user facing products, driving acquisition **0 to 100K+** in six months.",
       "Attracted **$1B** in liquidity across **60+** partner integrations.",
       "Led the cross chain bridge and wallet integrations behind **$500M** in liquidity, including the Tunnel.",
       "Grew DAU **70%** over three months through funnel analysis.",
@@ -97,7 +97,7 @@ export const jobs: Job[] = [
     colors: { bg: "#edecfa", hd: "#4f46e5", tx: "#5f5a9e", rows: "#e0defa", mk: "#3383c4" },
     headline: "Where the engineering instinct started.",
     body:
-      "Consumer health and nutrition platform serving millions of members. I built NLP workflows in Python that cut catalog redundancy **68%**, working across Python, NLP, and SQL on the data science team.",
+      "A health and nutrition platform serving millions of members. I built NLP workflows in Python that cut catalog redundancy **68%**, working across Python, NLP, and SQL on the data science team.",
     role: "Data Science / ML Intern · Jun 2019 to Sep 2019",
     media: null,
     plx: 16,

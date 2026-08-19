@@ -128,9 +128,9 @@ export default function Hero() {
     <header className="hero" id="top" ref={heroRef}>
       <canvas ref={canvasRef} aria-hidden="true" />
       <div className="wrap">
-        <div className="eyebrow reveal">Product Manager · Money movement</div>
-        <h1 className="reveal">Six years moving money,<br />made into product.</h1>
-        <p className="hero-sub reveal">Platforms, infrastructure, and applications, shipped faster with AI.</p>
+        <div className="eyebrow reveal">Senior Product Manager · Crypto infrastructure and money movement</div>
+        <h1 className="reveal">Five years moving money,<br />made into product.</h1>
+        <p className="hero-sub reveal">0 to 1 platforms taken to institutional scale. Previously at Coinbase.</p>
 
         <div className="ask reveal">
           <form
