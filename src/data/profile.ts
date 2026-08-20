@@ -16,10 +16,10 @@ export const profile = {
 export type Stat = { label: string; value: string; green?: boolean };
 
 export const stats: Stat[] = [
-  { label: "Assets managed and secured", value: "$20B+" },
-  { label: "Liquidity attracted to Hemi", value: "$1B+" },
+  { label: "Assets managed and secured", value: "$15B" },
+  { label: "Hemi TVL at launch", value: "$1B" },
   { label: "Users protected under MiCA", value: "1.3M" },
-  { label: "Faster engineering integrations", value: "62%", green: true },
+  { label: "Faster vendor integrations", value: "75%", green: true },
 ];
 
 /* --- work history (the bento) --- */
@@ -47,16 +47,16 @@ export const jobs: Job[] = [
   {
     id: "coinbase",
     colors: { bg: "#e9f0ff", hd: "#0043cc", tx: "#3f57a6", rows: "#dde7fd", mk: "#0052ff" },
-    headline: "The most trusted staking infrastructure.",
+    headline: "Money movement at institutional scale.",
     body:
-      "I supported the institutional ETFs moving billions through Coinbase, architected the infrastructure that segregates MiCA regulated funds for international users, and shipped the AI tooling that made engineering faster.",
+      "I owned money movement and integration platforms spanning institutional and retail custody, from the vendor integrations behind the institutional ETFs to MiCA compliance and a **$15B** key management migration. One of eight PMs out of 200+ chosen to drive company wide AI practices.",
     role: "Product Manager · May 2025 to May 2026",
     media: { kind: "assets" },
     bullets: [
-      "Facilitated **$4.5B** in institutional ETF funds flow through third party integrations.",
-      "Led compliance and reconciliation for **1.3M** users, protecting a **$1B** market and **$120M** in revenue.",
-      "Managed the **$15B** key management migration, saving **$2M** per year in legacy costs.",
-      "Shipped an agentic MCP cutting engineering integration time **62%**, from 40 to 15 weeks.",
+      "Delivered two **0 to 1** third party vendor integrations for the institutional ETF launch, powering **$4.5B** in institutional funds flow.",
+      "Led MiCA and Canada compliance strategy for **1.3M** users, preserving **$1B** in EU customer assets and **$120M** in annual revenue.",
+      "Migrated **$15B** in customer funds across 8 asset classes to new key management infrastructure in six months, eliminating **$2M** per year in legacy costs.",
+      "Shipped agentic MCP dev tooling that cut vendor integration time **75%** (16 to 4 weeks) and asset enablement **60%** (40 to 16 weeks).",
       "Surfaced **$180M** in at risk funds and led the financial recovery to full resolution.",
     ],
     plx: 24,
@@ -64,16 +64,15 @@ export const jobs: Job[] = [
   {
     id: "hemi",
     colors: { bg: "#fdeee5", hd: "#c2410c", tx: "#96522f", rows: "#f7e0d2", mk: "#ff5d22" },
-    headline: "Zero to 100K+ users on a new L2.",
+    headline: "Zero to 250K addresses on a new L2.",
     body:
-      "A modular Layer 2 protocol bringing Bitcoin security and programmability to DeFi. I owned end to end product strategy, from UI and UX through the liquidity that followed.",
+      "A Bitcoin Layer 2 backed by Binance Labs, spun off from Bloq's infrastructure team. Promoted to lead the venture **0 to 1**, I owned the consumer portal end to end and the ecosystem integrations that followed.",
     role: "Senior Product Manager · Aug 2023 to May 2025",
     media: { kind: "scene" },
     bullets: [
-      "Directed the UI and UX for user facing products, driving acquisition **0 to 100K+** in six months.",
-      "Attracted **$1B** in liquidity across **60+** partner integrations.",
-      "Led the cross chain bridge and wallet integrations behind **$500M** in liquidity, including the Tunnel.",
-      "Grew DAU **70%** over three months through funnel analysis.",
+      "Owned the consumer portal end to end, growing testnet participation **0 to 250K** addresses and gating rewards to **100K** verified participants who staked **$300M**.",
+      "Shipped mainnet in March 2025 with **50+** ecosystem partners, reaching **$1B TVL** in the first week.",
+      "Drove onboarding of ecosystem integrations with BD and engineering, building partner documentation, custody, and bridging infrastructure for third party protocols.",
     ],
     plx: 26,
   },
@@ -82,13 +81,13 @@ export const jobs: Job[] = [
     colors: { bg: "#e7f3fc", hd: "#026bb8", tx: "#3a6685", rows: "#d9ecf9", mk: "#2d9cff" },
     headline: "Banks, brought onchain.",
     body:
-      "Enterprise blockchain infrastructure, the onramp bringing traditional financial institutions onchain. I shipped Visa's first crypto yield product full stack, from API to UI.",
-    role: "Product Manager · May 2021 to Aug 2023",
+      "Blockchain node and staking infrastructure for enterprise clients including Discover. As the founding PM and first product hire, I built Visa's first Ethereum staking proof of concept, full stack from custody to interface.",
+    role: "Founding Product Manager · May 2021 to Aug 2023",
     media: { kind: "code" },
     bullets: [
-      "Owned end to end development of Visa's first crypto yield product, the full stack from API to UI.",
-      "Led **0 to 1** adoption of core platform services supporting **$25M** in user funds.",
-      "Managed banking partner relationships, advising Discover Bank on emerging trends and technologies.",
+      "Built **Visa's first Ethereum staking proof of concept**, spanning custody, API, and interface, with live ETH moving in production.",
+      "Drove **0 to 1** development of a self custodial staking as a service platform, scaling from Ethereum to **12** networks and **$25M** in peak assets staked by hedge fund clients.",
+      "Advised **Discover's** innovation team on emerging technology and roadmap strategy.",
     ],
     plx: 18,
   },
@@ -97,8 +96,8 @@ export const jobs: Job[] = [
     colors: { bg: "#edecfa", hd: "#4f46e5", tx: "#5f5a9e", rows: "#e0defa", mk: "#3383c4" },
     headline: "Where the engineering instinct started.",
     body:
-      "A health and nutrition platform serving millions of members. I built NLP workflows in Python that cut catalog redundancy **68%**, working across Python, NLP, and SQL on the data science team.",
-    role: "Data Science / ML Intern · Jun 2019 to Sep 2019",
+      "A health and nutrition platform serving millions of members. As a software engineering intern, I built NLP workflows in Python that cut catalog redundancy **68%**.",
+    role: "Software Engineering Intern · Jun 2019 to Sep 2019",
     media: null,
     plx: 16,
     compact: true,
@@ -108,12 +107,11 @@ export const jobs: Job[] = [
 /* --- credentials --- */
 export type Credential = { name: string; org: string };
 export const education: Credential[] = [
-  { name: "B.S., Computer Science", org: "Florida Atlantic University · 2020" },
+  { name: "B.S., Computer Science, Minor in Data Science", org: "Florida Atlantic University · 2021" },
 ];
 export const certifications: Credential[] = [
   { name: "Project Management Professional (PMP)", org: "Project Management Institute · 2024" },
   { name: "Product Management Certificate", org: "eCornell · 2023" },
-  { name: "Data Science Certificate", org: "Florida Atlantic University · 2020" },
 ];
 
 /* --- writing --- */

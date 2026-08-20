@@ -10,7 +10,7 @@ export default function Overview() {
               <h2 className="reveal">Money movement's operator.<br />Billions in motion.</h2>
               <div className="ov-copy reveal">
                 <p>I deliver every piece of money movement in one product practice: funds flow, key management, compliance, and the AI tooling that ships it all faster.</p>
-                <p>Five years across companies like Coinbase, from first commit to institutional and international scale. Engineer's depth, product leader's instincts.</p>
+                <p>Five years across companies like Coinbase, from first commit to institutional and consumer scale. Engineer's depth, product leader's instincts.</p>
                 <a className="ov-cta" href="#work">See the work <span className="arw">→</span></a>
               </div>
             </div>

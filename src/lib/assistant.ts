@@ -22,27 +22,27 @@ type Entry = { k: string[]; a: string };
 const KB: Entry[] = [
   {
     k: ["who are", "yourself", "summary", "bio", "background", "introduce"],
-    a: "I'm Ryan, a senior product manager with **five years** across crypto infrastructure, money movement, and fintech.\n\nBefore tech I was a professional chef. Then a computer science degree, then years living and working abroad, where I learned Spanish to fluency, which is how I met my wife. That path shows in how I work: calm under pressure, sharp communication, and an engineer's curiosity.\n\nMost recently at Coinbase I owned the core staking platform, the orchestration service moving customer funds from off chain to on chain across **8 assets**.",
+    a: "I'm Ryan, a senior product manager with **five years** owning money movement across institutional and consumer segments.\n\nBefore tech I was a professional chef. Then a computer science degree, then years living and working abroad, where I learned Spanish to fluency, which is how I met my wife. That path shows in how I work: calm under pressure, sharp communication, and an engineer's curiosity.\n\nMost recently at Coinbase I owned money movement and integration platforms across institutional and retail custody, and was one of eight PMs out of 200+ chosen to drive company wide AI practices.",
   },
   {
     k: ["last role", "current", "recent", "latest", "coinbase", "most recent", "staking"],
-    a: "My most recent role was **Product Manager at Coinbase** (May 2025 to May 2026), as DRI for the core staking platform moving customer funds on chain across **8 assets**.\n- Facilitated **$4.5B** in institutional ETF funds flow; one launch moved **$1B** in its first 24 hours\n- Led the MiCA segregation work protecting **1.3M** users and preserving **$120M** in annual revenue\n- Managed the **$15B** key management migration, saving **$2M/yr** in legacy costs\n- Shipped AI tooling that cut engineering integration time **62%**",
+    a: "My most recent role was **Product Manager at Coinbase** (May 2025 to May 2026), owning money movement and integration platforms across institutional and retail custody.\n- Delivered two 0 to 1 vendor integrations for the institutional ETF launch, powering **$4.5B** in funds flow\n- Led MiCA and Canada compliance strategy for **1.3M** users, preserving **$1B** in EU assets and **$120M** in annual revenue\n- Migrated **$15B** across 8 asset classes to new key management infrastructure in six months, saving **$2M/yr**\n- Shipped agentic MCP dev tooling that cut vendor integration time **75%**, from 16 to 4 weeks",
   },
   {
     k: ["metric", "impact", "number", "result", "achievement", "impactful", "proud", "top"],
-    a: "The numbers I'm proudest of:\n- **$15B** in assets migrated to new key management infrastructure\n- **$4.5B** in ETF funds flow, **$1B** of it in one launch's first 24 hours\n- **$24M** in live funds migrated in a single day by reframing a 16 week build\n- **$1B+** liquidity attracted to Hemi across **60+** integrations\n- **$180M** in at risk funds surfaced and recovered\n- **62%** faster integrations with an agentic MCP, **75%** with an LLM runbook\n- **0 to 100K+** users on Hemi's user facing apps",
+    a: "The numbers I'm proudest of:\n- **$15B** migrated to new key management infrastructure across 8 asset classes\n- **$4.5B** in ETF funds flow, **$1B** of it in one launch's first 24 hours\n- **$24M** in live funds migrated in a single day by reframing a 16 week build\n- **$1B TVL** on Hemi in its first week, across **50+** ecosystem partners\n- **$180M** in at risk funds surfaced and recovered\n- **75%** faster vendor integrations with an agentic MCP, 16 to 4 weeks\n- **0 to 250K** addresses on Hemi, **100K** verified stakers",
   },
   {
     k: ["compan", "where", "worked", "history", "experience", "career"],
-    a: "Where I've worked:\n- **Coinbase** · Product Manager · 2025 to 2026\n- **Hemi** · PM to Senior PM · 2023 to 2025\n- **Bloq** · Product Manager · 2021 to 2023\n- **Weight Watchers** · Data Science / ML Intern · 2019",
+    a: "Where I've worked:\n- **Coinbase** · Product Manager · 2025 to 2026\n- **Hemi** · Senior Product Manager · 2023 to 2025\n- **Bloq** · Founding Product Manager · 2021 to 2023\n- **Weight Watchers** · Software Engineering Intern · 2019",
   },
   {
     k: ["ai", "llm", "mcp", "claude", "tooling", "automation", "agent", "model", "use ai"],
-    a: "AI shows up in four places in how I work:\n- **Shipping faster**: an agentic MCP systematized protocol onboarding, cutting integration time from **40 to 15 weeks**\n- **Deciding better**: I use AI to pressure test my proposals before they reach the team\n- **Communicating sharper**: AI skill libraries organize company artifacts so PRDs and dashboards build on past solutions\n- **Going deeper**: on one migration I used AI to ramp into protocol mechanics in days instead of weeks\n\nAI extends my leverage as a product leader, not just my speed. I build daily with Claude Code and Codex.",
+    a: "At Coinbase I was one of eight PMs out of 200+ chosen to drive company wide AI practices. AI shows up in four places in how I work:\n- **Shipping faster**: an agentic MCP systematized vendor onboarding, cutting integration time from **16 to 4 weeks**\n- **Deciding better**: I use AI to pressure test my proposals before they reach the team\n- **Communicating sharper**: AI skill libraries organize company artifacts so PRDs and dashboards build on past solutions\n- **Going deeper**: on one migration I used AI to ramp into protocol mechanics in days instead of weeks\n\nAI extends my leverage as a product leader, not just my speed. I build daily with Claude Code and Codex.",
   },
   {
     k: ["15b", "$15b", "key management", "infrastructure", "migration", "migrate"],
-    a: "I managed the migration of **$15B** in assets onto new key management infrastructure across 8 assets, saving **$2M per year** in legacy costs, without customer facing disruption.\n\nSeparately, my favorite migration story: engineering scoped one move at **16 weeks** against a deadline of weeks. I pushed on what actually had to be true, and we moved **$24M** in live funds in a **single day** with a configuration change.",
+    a: "I migrated **$15B** in customer funds onto new key management infrastructure across 8 asset classes in six months, saving **$2M per year** in legacy costs, without customer facing disruption.\n\nSeparately, my favorite migration story: engineering scoped one move at **16 weeks** against a deadline of weeks. I pushed on what actually had to be true, and we moved **$24M** in live funds in a **single day** with a configuration change.",
   },
   {
     k: ["24m", "$24m", "single day", "one day", "config", "reframe", "16 week", "constraint", "migration", "migrate"],
@@ -58,7 +58,7 @@ const KB: Entry[] = [
   },
   {
     k: ["hemi", "bridge", "tunnel", "l2", "launch", "liquidity", "cross chain", "wallet", "tvl"],
-    a: "At **Hemi**, a Bitcoin L2, I grew from PM to Senior PM owning the user facing surface and the bridge:\n- Drove **0 to 100K+** active accounts in six months\n- Led the cross chain bridge end to end: **$500M** facilitated in 2 weeks, **$1B+ TVL** within 3 months\n- The network launch attracted **$1B** in liquidity in 4 weeks across **60+** DeFi integrations\n- Lifted participation from **73% to 95%** with a proof of personhood app",
+    a: "At **Hemi**, a Bitcoin L2 backed by Binance Labs, I was promoted to lead the venture 0 to 1, owning the consumer portal end to end:\n- Grew testnet participation **0 to 250K** addresses, gating rewards to **100K** verified participants who staked **$300M**\n- Shipped mainnet in March 2025 with **50+** ecosystem partners, reaching **$1B TVL** in the first week\n- Built partner documentation, custody, and bridging infrastructure for third party protocols\n- Lifted participation from **73% to 95%** with a proof of personhood app after bots gamed rewards",
   },
   {
     k: ["miner", "pop", "wasm", "funnel", "drop off", "declin", "data story"],
@@ -70,7 +70,7 @@ const KB: Entry[] = [
   },
   {
     k: ["bloq", "visa", "custody", "discover", "yield", "onchain"],
-    a: "At **Bloq** I shipped onchain financial infrastructure:\n- Owned Visa's first **crypto yield product**, full stack from API to UI\n- Scaled an institutional product line to **$25M** in assets across **12 integrations**\n- Owned delivery across three API infrastructure products\n- Advised **Discover Bank's** innovation team on emerging technology and roadmap strategy",
+    a: "At **Bloq** I was the founding PM and first product hire, building onchain staking infrastructure:\n- Built **Visa's first Ethereum staking proof of concept**, full stack across custody, API, and interface, with live ETH in production\n- Drove 0 to 1 development of a self custodial staking as a service platform, scaling from Ethereum to **12** networks and **$25M** in peak assets staked by hedge fund clients\n- Advised **Discover's** innovation team on emerging technology and roadmap strategy",
   },
   {
     k: ["compliance", "governance", "regulat", "legal"],
@@ -106,11 +106,11 @@ const KB: Entry[] = [
   },
   {
     k: ["skill", "stack", "tech", "tools", "python"],
-    a: "**Product:** metrics ownership, north star definition, funnel optimization, experimentation, roadmapping, stakeholder management.\n\n**Technical & AI:** LLM tooling, Python, SQL, JavaScript, Solidity, Claude Code, Codex, Snowflake, Datadog, Looker.\n\n**Languages:** English, Spanish.",
+    a: "**Product:** metrics ownership and north star definition, funnel optimization, experimentation, roadmapping, stakeholder management, cross functional leadership, user research, developer experience.\n\n**Technical & AI:** LLM tooling, MCP, Python, SQL, JavaScript, Solidity, REST, Postman, Snowflake, Datadog, Looker, Claude Code, Codex, AWS, Vercel.\n\n**Languages:** English, Spanish.",
   },
   {
     k: ["education", "school", "degree", "college", "university", "fau", "certif"],
-    a: "**B.S. in Computer Science**, Florida Atlantic University (2020).\n\nCertifications: **PMP** (2024), Product Management Certificate from eCornell (2023), Data Science Certificate (2020).",
+    a: "**B.S. in Computer Science** with a minor in Data Science, Florida Atlantic University (2021).\n\nCertifications: **PMP** (2024) and a Product Management Certificate from eCornell (2023).",
   },
   {
     k: ["contact", "hire", "email", "reach", "available", "connect", "linkedin"],
